@@ -101,13 +101,22 @@ function canvasApp(){
 	}
   
         function y_equals_xPressed(e) {
-            context.lineWidth = 6;
-            context.strokeStyle = 'green';
-            context.beginPath();
-            context.moveTo(600, 0);
-            context.lineTo(0, 600);
-            context.stroke();
-            context.closePath();
+            var location = 0;
+            var drawLineIntervalId = 0;
+            drawLineIntervalId = setInterval(draw_y_equals_x, 33);
+            function draw_y_equals_x () {
+              context.lineWidth = 6;
+              context.strokeStyle = 'green';
+              context.beginPath();
+              context.moveTo(0, 600);
+              context.lineTo(location, 600-location);
+              context.stroke();
+              context.closePath();
+              location += 5;
+              if (location == 605) {
+                 clearInterval(drawLineIntervalId); // stop animation when line is complete 
+              }
+            }
         }
 
         function y_equals_negative_xPressed(e) {
