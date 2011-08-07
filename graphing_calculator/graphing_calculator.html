@@ -101,52 +101,95 @@ function canvasApp(){
 	}
   
         function y_equals_xPressed(e) {
-            var location = 0;
+            var init_x = 0;
+            var init_y = 600;
+            var new_x = 0;
+            var new_y = 600;
             var drawLineIntervalId = 0;
             drawLineIntervalId = setInterval(draw_y_equals_x, 33);
             function draw_y_equals_x () {
               context.lineWidth = 6;
               context.strokeStyle = 'green';
               context.beginPath();
-              context.moveTo(0, 600);
-              context.lineTo(location, 600-location);
+              context.moveTo(init_x, init_y);
+              context.lineTo(new_x, new_y);
               context.stroke();
               context.closePath();
-              location += 5;
-              if (location == 605) {
+              new_x = new_x + 5
+              new_y = new_y - 5
+              if (new_x == 605) {
                  clearInterval(drawLineIntervalId); // stop animation when line is complete 
               }
             }
         }
 
         function y_equals_negative_xPressed(e) {
-            context.lineWidth = 6;
-            context.strokeStyle = 'purple';
-            context.beginPath();
-            context.moveTo(0, 0);
-            context.lineTo(600, 600);
-            context.stroke();
-            context.closePath();
+            var init_x = 0;
+            var init_y = 0;
+            var new_x = 0;
+            var new_y = 0;
+            var drawLineIntervalId = 0;
+            drawLineIntervalId = setInterval(draw_y_equals_negative_x, 33);
+            function draw_y_equals_negative_x () {
+               context.lineWidth = 6;
+               context.strokeStyle = 'purple';
+               context.beginPath();
+               context.moveTo(init_x, init_y);
+               context.lineTo(new_x, new_y);
+               context.stroke();
+               context.closePath();
+               new_x = new_x + 5
+               new_y = new_y + 5
+               if (new_x == 605) {
+                 clearInterval(drawLineIntervalId); // stop animation when line is complete 
+               }
+            }
         }
 
         function y_equals_two_xPressed(e) {
-            context.lineWidth = 6;
-            context.strokeStyle = 'blue';
-            context.beginPath();
-            context.moveTo(150, 600);
-            context.lineTo(450, 0);
-            context.stroke();
-            context.closePath();
+            var init_x = 150;
+            var init_y = 600;
+            var new_x = 150;
+            var new_y = 600;
+            var drawLineIntervalId = 0;
+            drawLineIntervalId = setInterval(draw_y_equals_two_x, 33);
+            function draw_y_equals_two_x () {
+               context.lineWidth = 6;
+               context.strokeStyle = 'blue';
+               context.beginPath();
+               context.moveTo(init_x, init_y);
+               context.lineTo(new_x, new_y);
+               context.stroke();
+               context.closePath();
+               new_x = new_x + 5;
+               new_y = new_y - 10;
+               if (new_x == 605) {
+                 clearInterval(drawLineIntervalId); // stop animation when line is complete 
+               }
+            }
         }
 
         function y_equals_one_half_xPressed(e) {
-            context.lineWidth = 6;
-            context.strokeStyle = 'brown';
-            context.beginPath();
-            context.moveTo(0, 450);
-            context.lineTo(600, 150);
-            context.stroke();
-            context.closePath();
+            var init_x = 0;
+            var init_y = 450;
+            var new_x = 0;
+            var new_y = 450;
+            var drawLineIntervalId = 0;
+            drawLineIntervalId = setInterval(draw_y_equals_one_half_x, 33);
+            function draw_y_equals_one_half_x () {  
+               context.lineWidth = 6;
+               context.strokeStyle = 'brown';
+               context.beginPath();
+               context.moveTo(init_x, init_y);
+               context.lineTo(new_x, new_y);
+               context.stroke();
+               context.closePath();
+               new_x = new_x + 5
+               new_y = new_y - 2.5
+               if (new_x == 605) {
+                 clearInterval(drawLineIntervalId); // stop animation when line is complete 
+               }
+            }
         }
 
         function reset_grid_buttonPressed(e) {
