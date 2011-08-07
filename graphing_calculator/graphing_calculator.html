@@ -39,6 +39,8 @@ function canvasApp(){
             y_equals_two_x_button.addEventListener('click', y_equals_two_xPressed, false);
 	    var y_equals_one_half_x_button = document.getElementById("y_equals_one_half_x");
             y_equals_one_half_x_button.addEventListener('click', y_equals_one_half_xPressed, false);
+	    var reset_grid_button = document.getElementById("reset_grid");
+            reset_grid_button.addEventListener('click', reset_grid_buttonPressed, false);
         }
 
 	function drawGrid() {
@@ -130,12 +132,17 @@ function canvasApp(){
 
         function y_equals_one_half_xPressed(e) {
             context.lineWidth = 6;
-            context.strokeStyle = 'orange';
+            context.strokeStyle = 'brown';
             context.beginPath();
             context.moveTo(0, 450);
             context.lineTo(600, 150);
             context.stroke();
             context.closePath();
+        }
+
+        function reset_grid_buttonPressed(e) {
+            theCanvas.width = theCanvas.width; // Reset grid
+            drawGrid();
         }
 }
 
@@ -153,7 +160,8 @@ function canvasApp(){
 <input type="button" id="y_equals_x" value="y = x" style="color: green;">
 <input type="button" id="y_equals_negative_x" value="y = -x" style="color: purple;">
 <input type="button" id="y_equals_two_x" value="y = 2x" style="color: blue;">
-<input type="button" id="y_equals_one_half_x" value="y = &#xbd;x" style="color: orange">
+<input type="button" id="y_equals_one_half_x" value="y = &#xbd;x" style="color: brown">
+<input type="button" id="reset_grid" value="Reset Grid">
 </form>
 </div>
 </body>
