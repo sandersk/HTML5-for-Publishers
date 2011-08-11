@@ -19,8 +19,10 @@ function canvasApp(){
   	}else{
 	    var theCanvas = document.getElementById('canvas');
 	    var context = theCanvas.getContext('2d');
-            initGraphCalculator();
+
 	}
+
+            initGraphCalculator();
 	
 	function initGraphCalculator() {
 	    drawGrid();
