@@ -47,6 +47,7 @@ function canvasApp(){
 	    var blackButton = document.getElementById("black");
 	    var whiteButton = document.getElementById("white");
 	    var colorChosen = document.getElementById("color_chosen");
+	    var resetButton = document.getElementById("reset_dog");
 	}
 
 	    var doggie = new Image();
@@ -98,7 +99,8 @@ function canvasApp(){
         purpleButton.addEventListener('click', purplePressed, false);
         brownButton.addEventListener('click', brownPressed, false);
         blackButton.addEventListener('click', blackPressed, false);
-        whiteButton.addEventListener('click', whitePressed, false); 
+        whiteButton.addEventListener('click', whitePressed, false);
+        resetButton.addEventListener('click', resetPressed, false);
     }
 
 // The mousemove event handler.
@@ -168,6 +170,11 @@ function ev_mousemove (ev) {
 
     function whitePressed (ev) {
 	colorChosen.innerHTML = "White";
+    }
+
+    function resetPressed(e) {
+        theCanvas.width = theCanvas.width; // Reset grid
+        drawScreen();
     }
 
 }
