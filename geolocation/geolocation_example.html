@@ -2,46 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-<title>Google Maps JavaScript API Example: Street View Layer</title>
+<title>A Geolocated Tale</title>
 <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
 <script src="http://maps.googleapis.com/maps/api/js?sensor=true" type="text/javascript"></script>
 <script src="modernizr-1.6.min.js"></script>
-
-<script type="text/javascript">
-
-  function initialize() {
-    get_location();
-
-    function draw_map(position) {
-    var geo_lat = position.coords.latitude;
-    var geo_long = position.coords.longitude;
-      var street_view = new google.maps.LatLng(geo_lat, geo_long);
-      var viewOptions = {
-        position: street_view,
-        pov: {
-          heading: 34,
-          pitch: 10,
-          zoom: 1
-        }
-      };
-      var street_view = new  google.maps.StreetViewPanorama(document.getElementById("street_view"),viewOptions);
-    }
-
-  function get_location() {
-    if (Modernizr.geolocation) {
-       navigator.geolocation.getCurrentPosition(draw_map, throw_error);
-     } else {
-       // Do nothing. Sigh
-     }
-
-   function throw_error(position) {
-     alert('Unable to geolocate you. Sorry.');
-   }
-  }
-}
+<script src="geolocation-story.js"></script>
 </script>
 </head>
 <body onload="initialize()">
+<h1>A Geolocated Tale</h1>
+<p>It was a bright, sunny day in <em id="city">CITY NAME</em> when
+Muffin Bukowski was roused from delicate, decadent slumber by the
+ear-throttling shriek of an unidentified avian trespassing on the
+grounds of her otherwise-serene home, clearly violating Section I,
+Article 246 of <em id="country_name">COUNTRY NAME</em>&#8217;s rigorous property
+statutes.</p> Groggily stumbling to her bedroom window, Muffin peered
+through the pristine glass out at <em id="street_name">STREET
+NAME</em> and took in this startling tableau:
   <div id="street_view" style="width: 600px; height: 600px;">Loading street view...</div>
+<p>&#8216;Are my eyes deceiving me?&#8217; Muffin muttered as she
+  jabbed her forehead with her knuckles, unable to process the
+  miraculous scene unfolding before her...</p> 
 </body>
 </html>
