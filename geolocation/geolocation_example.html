@@ -7,19 +7,47 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=true" type="text/javascript"></script>
 <script src="modernizr-1.6.min.js"></script>
 <script src="geolocation-story.js"></script>
+<style media="screen" type="text/css">
+body {
+ width: 600px;
+ margin: 10px 5px 10px 5px;
+}
+
+em {
+ font-weight: bold;
+ font-style: normal;
+ color: red;
+}
+
+div#street_view {
+ border-style: solid;
+ border-wdith: 2px;
+ width: 450px;
+ height: 450px;
+}
+
+div#street_view p {
+ margin: 5px 0px 0px 0px;
+ text-align: center;
+ font-size: larger;
+ color: red;
+}
+</style>
 </script>
 </head>
 <body onload="initialize()">
 <h1>A Geolocated Tale</h1>
-<p>It was a bright, sunny day in <em id="city">CITY NAME</em> when
+<p>It was a bright, sunny day in <em id="city">LOADING CITY NAME</em> when
 Muffin Bukowski was roused from decadent slumber by the
 ear-throttling shriek of an unidentified avian trespassing on the
 grounds of her otherwise-serene home, clearly violating Section I,
-Article 246 of her condo documents.</p> Groggily stumbling to her bedroom window, Muffin peered
-through the pristine glass out at <em id="street_name">STREET
-NAME</em> and took in this startling tableau:
-  <div id="street_view" style="width: 600px; height: 600px;">Loading street view...</div>
-<p>&#8216;Are my eyes deceiving me?&#8217; Muffin muttered as she lightly
+Article 246 of her condo documents.</p>
+
+<p>Groggily stumbling to her bedroom window, Muffin peered
+through the pristine glass out at <em id="street_name">LOADING STREET
+NAME</em> and took in this startling tableau:</p>
+  <div id="street_view"><p>Loading street view...</p></div>
+<p>&#8220;Are my eyes deceiving me?&#8221; Muffin muttered as she lightly
   rapped her knuckles against her forehead, unable to process the
   miraculous scene unfolding before her...</p> 
 </body>
