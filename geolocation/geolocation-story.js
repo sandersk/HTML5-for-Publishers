@@ -25,14 +25,15 @@
 	  geocoder.geocode({'latLng': lat_and_long}, function(geolocation_results, geocode_status) {
 	      if (geocode_status == google.maps.GeocoderStatus.OK) {
 		  if (geolocation_results[0]) {
-		      full_address = geolocation_results[0].formatted_address;
-		      street_address = full_address.split(",")[0];
+		      full_address = geolocation_results[0].formatted_address; // full address
+		      street_address = full_address.split(",")[0]; // Just use the street portion of the address
 		      street_html_element.innerHTML = street_address;
 		  } else {
 		      alert("Cannot update street address");
 		  }
 		  if (geolocation_results[3]) {
-		      city = geolocation_results[3].formatted_address;
+		      full_city = geolocation_results[3].formatted_address; // city, state, and country
+		      city = full_city.split(",")[0]; // Just use the city portion of the address
 		      city_html_element.innerHTML = city;
 		  } else {
 		      alert("Cannot update city");
