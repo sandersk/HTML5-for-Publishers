@@ -24,49 +24,54 @@ function canvasApp(){
 	if (!canvasSupport()) {
 			 return;
   	}else{
-	    var theCanvas = document.getElementById('canvas');
-	    var context = theCanvas.getContext('2d');
+	    var theCanvas = document.getElementById('my_first_canvas');
+	    var my_canvas = theCanvas.getContext('2d');
 	}
 	
 	
-	drawScreen();
+	drawPicture();
 
-	function drawScreen() {
-		//draw face
-                context.strokeRect(0,0,200,250)
-                context.beginPath();
-		context.arc(100, 100, 75, (Math.PI/180)*0, (Math.PI/180)*360, false); // circle dimensions
-                context.strokeStyle = "black"; // circle outline is black
-                context.lineWidth = 3; // outline is three pixels wide
-		context.fillStyle = "yellow"; // fill circle with yellow
-		context.stroke(); // draw circle
-                context.fill(); // fill in circle
-		context.closePath();
-                context.fillStyle = "black"; // switch to black for the fill
-                // now, draw left eye
-                context.beginPath();
-		context.arc(65, 70, 10, (Math.PI/180)*0, (Math.PI/180)*360, false); // circle dimensions
-  		context.stroke(); // draw circle
-                context.fill(); // fill in circle
-		context.closePath();
-                // now, draw right eye
-                context.beginPath();
-                context.arc(135, 70, 10, (Math.PI/180)*0, (Math.PI/180)*360, false); // circle dimensions
-  		context.stroke(); // draw circle
-                context.fill(); // fill in circle
-		context.closePath();
-                // draw smile
-                context.lineWidth = 6; // switch to six pixels wide for outline
-                context.beginPath();
-                context.arc(99, 120, 35, (Math.PI/180)*0, (Math.PI/180)*-180, false); // semicircle dimensions
-                context.stroke();
-                context.closePath();
-                // Smiley Speaks!
-		context.fillStyle = "black"; // switch to black for text fill
-		context.font         = '20px _sans'; // use 20 pixel sans serif font
-		context.textBaseline = 'top';
-		context.fillText  ("Hello Canvas!", 45, 200); // write text
-	}
+    function drawPicture() {
+
+    my_canvas.strokeRect(0,0,200,225) // to start, draw a border around the canvas
+
+    //draw face
+    my_canvas.beginPath();
+    my_canvas.arc(100, 100, 75, (Math.PI/180)*0, (Math.PI/180)*360, false); // circle dimensions
+    my_canvas.strokeStyle = "black"; // circle outline is black
+    my_canvas.lineWidth = 3; // outline is three pixels wide
+    my_canvas.fillStyle = "yellow"; // fill circle with yellow
+    my_canvas.stroke(); // draw circle
+    my_canvas.fill(); // fill in circle
+    my_canvas.closePath();
+    
+    // now, draw left eye
+    my_canvas.fillStyle = "black"; // switch to black for the fill
+    my_canvas.beginPath();
+    my_canvas.arc(65, 70, 10, (Math.PI/180)*0, (Math.PI/180)*360, false); // circle dimensions
+    my_canvas.stroke(); // draw circle
+    my_canvas.fill(); // fill in circle
+    my_canvas.closePath();
+
+    // now, draw right eye
+    my_canvas.beginPath();
+    my_canvas.arc(135, 70, 10, (Math.PI/180)*0, (Math.PI/180)*360, false); // circle dimensions
+    my_canvas.stroke(); // draw circle
+    my_canvas.fill(); // fill in circle
+    my_canvas.closePath();
+
+    // draw smile
+    my_canvas.lineWidth = 6; // switch to six pixels wide for outline
+    my_canvas.beginPath();
+    my_canvas.arc(99, 120, 35, (Math.PI/180)*0, (Math.PI/180)*-180, false); // semicircle dimensions
+    my_canvas.stroke();
+    my_canvas.closePath();
+
+    // Smiley Speaks!
+    my_canvas.fillStyle = "black"; // switch to black for text fill
+    my_canvas.font         = '20px _sans'; // use 20 pixel sans serif font
+    my_canvas.fillText  ("Hello Canvas!", 45, 200); // write text
+}
 
 }
 
@@ -75,7 +80,7 @@ function canvasApp(){
 </head>
 <body>
 <div style="position: absolute; top: 50px; left: 50px;">
-<canvas id="canvas" width="200" height="250">
+<canvas id="my_first_canvas" width="200" height="225">
   The content you put here will show up if your rendering engine doesn't support the &lt;canvas&gt; element.
 </canvas>
 </div>
