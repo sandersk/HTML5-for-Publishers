@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ch2 BaseFile Template For Chapter 3 Examples</title>
+<script src="modernizr-1.6.min.js"></script>
+<script type="text/javascript">
+window.addEventListener('load', eventWindowLoaded, false);	
+function eventWindowLoaded() {
+
+	canvasApp();
+	
+}
+
+function canvasSupport () {
+  	return Modernizr.canvas;
+}
+
+
+function canvasApp(){
+
+	
+
+	if (!canvasSupport()) {
+			 return;
+  	}else{
+	    var theCanvas = document.getElementById('canvas');
+	    var context = theCanvas.getContext('2d');
+	}
+	
+	
+	drawScreen();
+
+	function drawScreen() {
+		//draw face
+                context.strokeRect(0,0,200,250)
+                context.beginPath();
+		context.arc(100, 100, 75, (Math.PI/180)*0, (Math.PI/180)*360, false); // circle dimensions
+                context.strokeStyle = "black"; // circle outline is black
+                context.lineWidth = 3; // outline is three pixels wide
+		context.fillStyle = "yellow"; // fill circle with yellow
+		context.stroke(); // draw circle
+                context.fill(); // fill in circle
+		context.closePath();
+                context.fillStyle = "black"; // switch to black for the fill
+                // now, draw left eye
+                context.beginPath();
+		context.arc(65, 70, 10, (Math.PI/180)*0, (Math.PI/180)*360, false); // circle dimensions
+  		context.stroke(); // draw circle
+                context.fill(); // fill in circle
+		context.closePath();
+                // now, draw right eye
+                context.beginPath();
+                context.arc(135, 70, 10, (Math.PI/180)*0, (Math.PI/180)*360, false); // circle dimensions
+  		context.stroke(); // draw circle
+                context.fill(); // fill in circle
+		context.closePath();
+                // draw smile
+                context.lineWidth = 6; // switch to six pixels wide for outline
+                context.beginPath();
+                context.arc(99, 120, 35, (Math.PI/180)*0, (Math.PI/180)*-180, false); // semicircle dimensions
+                context.stroke();
+                context.closePath();
+                // Smiley Speaks!
+		context.fillStyle = "black"; // switch to black for text fill
+		context.font         = '20px _sans'; // use 20 pixel sans serif font
+		context.textBaseline = 'top';
+		context.fillText  ("Hello Canvas!", 45, 200); // write text
+	}
+
+}
+
+
+</script> 
+</head>
+<body>
+<div style="position: absolute; top: 50px; left: 50px;">
+<canvas id="canvas" width="200" height="250">
+  The content you put here will show up if your rendering engine doesn't support the &lt;canvas&gt; element.
+</canvas>
+</div>
+</body>
+</html>
