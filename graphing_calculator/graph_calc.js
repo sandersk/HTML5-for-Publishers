@@ -41,60 +41,52 @@ function canvasApp(){
 
 	function drawGrid() {
 
-                   var i = 0;
-                   axis_pos = 1;
+            var i = 0;
+            axis_pos = 1;
+	    can_width = theCanvas.width;
 
-		   for (i=0;i<=600;i+=75)
-                   {
-                   if (i == 300)
-                   {
-                      context.lineWidth = 3;
-                      context.strokeStyle = 'red';
-                   }
-                   else
-                   {
-                      context.lineWidth = 1;
-                      context.strokeStyle = 'black';
-                   }
-                   // First draw horizontal line
-                   context.beginPath();
-                   context.moveTo(i, 0);
-                   context.lineTo(i, 600);
-                   context.stroke();
-                   context.closePath();
-                   // Then draw vertical line
-                   context.beginPath();
-                   context.moveTo(0, i);
-                   context.lineTo(600, i);
-                   context.stroke();
-                   context.closePath();
-                   // Then add axis labels
-       		   context.font         = '20px _sans';
-		   context.textBaseline = 'top';
-                   // horizontal labels
-                   context.fillText  ("-4", 3, 305);
-                   context.fillText  ("-3", 78, 305);
-                   context.fillText  ("-2", 153, 305);
-                   context.fillText  ("-1", 228, 305);
-                   context.fillText  ("0", 306, 305);
-                   context.fillText  ("1", 360, 305);
-                   context.fillText  ("2", 435, 305);
-                   context.fillText  ("3", 510, 305);
-                   context.fillText  ("4", 587, 305);
-                   // vertical labels
-                   context.fillText  ("4", 305, 3);
-                   context.fillText  ("3", 305, 78);
-                   context.fillText  ("2", 305, 153);
-                   context.fillText  ("1", 305, 228);
-                   context.fillText  ("-1", 305, 351);
-                   context.fillText  ("-2", 305, 426);
-                   context.fillText  ("-3", 305, 501);
-                   context.fillText  ("-4", 305, 576);
+	    // Loop through and draw horizontal/vertical lines at each eighth of the grid
+	    // All logic below presumes canvas has square dimensions
+	    for (i=0;i<=can_width;i+=(can_width)/8)
+            {
+                if (i == (can_width)/2) // Special handling for horiz/vert axes
+                {
+                    context.lineWidth = 3; // Axes are thicker...
+                    context.strokeStyle = 'red'; //... and in red
                 }
-
-      
-
+                else
+                {
+                    context.lineWidth = 1;
+                    context.strokeStyle = 'black';
+                }
+                // First draw horizontal line
+                context.beginPath();
+                context.moveTo(i, 0);
+                context.lineTo(i, can_width);
+                context.stroke();
+                context.closePath();
+                // Then draw vertical line
+                context.beginPath();
+                context.moveTo(0, i);
+                context.lineTo(can_width, i);
+                context.stroke();
+                context.closePath();
+	    }
+                // Then add axis labels
+       		context.font         = '20px _sans';
+		context.textBaseline = 'top';
+		// Move canvas origin to center of grid
+		context.translate(can_width / 2, can_width / 2);
+		for (i=-4;i<=8;i++) {
+		    if (i != 0) {
+			// horizontal label
+			context.fillText  (i, i*(can_width/8) + 5, 5);
+			// vertical labels
+			context.fillText  (i, 5, -i*(can_width/8));
+		    }
+		}
 	}
+
   
         function y_equals_xPressed(e) {
             var init_x = 0;
