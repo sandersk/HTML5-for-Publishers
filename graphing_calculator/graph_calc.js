@@ -77,7 +77,7 @@ function canvasApp(){
 		context.textBaseline = 'top';
 		// Move canvas origin to center of grid
 		context.translate(can_width / 2, can_width / 2);
-		for (i=-4;i<=8;i++) {
+		for (i=-3;i<=3;i++) {
 		    if (i != 0) {
 			// horizontal label
 			context.fillText  (i, i*(can_width/8) + 5, 5);
