@@ -89,108 +89,47 @@ function canvasApp(){
 
   
         function y_equals_xPressed(e) {
-            var init_x = 0;
-            var init_y = 600;
-            var new_x = 0;
-            var new_y = 600;
-            var drawLineIntervalId = 0;
-            status_message.setAttribute("style", "");
-            status_message.innerHTML = "Drawing equation y = x";
-            drawLineIntervalId = setInterval(draw_y_equals_x, 33);
-            function draw_y_equals_x () {
-              context.lineWidth = 6;
-              context.strokeStyle = 'green';
-              context.beginPath();
-              context.moveTo(init_x, init_y);
-              context.lineTo(new_x, new_y);
-              context.stroke();
-              context.closePath();
-              new_x = new_x + 5
-              new_y = new_y - 5
-              if (new_x == 605) {
-                 clearInterval(drawLineIntervalId); // stop animation when line is complete
-                 status_message.setAttribute("style", "display: none;")
-              }
-            }
+	    draw_grid_line(1, "green");
         }
 
         function y_equals_negative_xPressed(e) {
-            var init_x = 0;
-            var init_y = 0;
-            var new_x = 0;
-            var new_y = 0;
-            var drawLineIntervalId = 0;
-            status_message.setAttribute("style", "");
-            status_message.innerHTML = "Drawing equation y = -x";
-            drawLineIntervalId = setInterval(draw_y_equals_negative_x, 33);
-            function draw_y_equals_negative_x () {
-               context.lineWidth = 6;
-               context.strokeStyle = 'purple';
-               context.beginPath();
-               context.moveTo(init_x, init_y);
-               context.lineTo(new_x, new_y);
-               context.stroke();
-               context.closePath();
-               new_x = new_x + 5
-               new_y = new_y + 5
-               if (new_x == 605) {
-                 clearInterval(drawLineIntervalId); // stop animation when line is complete
-                 status_message.setAttribute("style", "display: none;")
-               }
-            }
+	    draw_grid_line(-1, "purple");
         }
 
         function y_equals_two_xPressed(e) {
-            var init_x = 150;
-            var init_y = 600;
-            var new_x = 150;
-            var new_y = 600;
-            var drawLineIntervalId = 0;
-            status_message.setAttribute("style", "");
-            status_message.innerHTML = "Drawing equation y = 2x";
-            drawLineIntervalId = setInterval(draw_y_equals_two_x, 33);
-            function draw_y_equals_two_x () {
-               context.lineWidth = 6;
-               context.strokeStyle = 'blue';
-               context.beginPath();
-               context.moveTo(init_x, init_y);
-               context.lineTo(new_x, new_y);
-               context.stroke();
-               context.closePath();
-               new_x = new_x + 5;
-               new_y = new_y - 10;
-               if (new_x == 605) {
-                 clearInterval(drawLineIntervalId); // stop animation when line is complete
-                 status_message.setAttribute("style", "display: none;")
-               }
-            }
+	    draw_grid_line(2, "blue");
         }
 
         function y_equals_one_half_xPressed(e) {
-            var init_x = 0;
-            var init_y = 450;
-            var new_x = 0;
-            var new_y = 450;
-            var drawLineIntervalId = 0;
-            status_message.setAttribute("style", "");
-            status_message.innerHTML = "Drawing equation y = &#xbd;x";
-            drawLineIntervalId = setInterval(draw_y_equals_one_half_x, 33);
-            function draw_y_equals_one_half_x () {  
-               context.lineWidth = 6;
-               context.strokeStyle = 'brown';
-               context.beginPath();
-               context.moveTo(init_x, init_y);
-               context.lineTo(new_x, new_y);
-               context.stroke();
-               context.closePath();
-               new_x = new_x + 5
-               new_y = new_y - 2.5
-               if (new_x == 605) {
-                 clearInterval(drawLineIntervalId); // stop animation when line is complete
-                 status_message.setAttribute("style", "display: none;")
-               }
-            }
+	    draw_grid_line(1/2, "brown");
         }
+
+    function draw_grid_line (slope, color) {
+	init_x = -(theCanvas.width)/2; // start with x = left edge of grid
+	init_y = -(init_x) * slope // y = mx
+	new_x = init_x;
+	new_y = init_y;
+        var drawLineIntervalId = 0;
+	status_message.innerHTML = "Drawing equation y = " + slope + "x";
+        drawLineIntervalId = setInterval(start_animation, 33);
+	// Note: Must reverse sign y-coordinate, as negative y-coordinates are top half of grid by default, not bottom
+	function start_animation () {
+	    context.lineWidth = 6;
+	    context.strokeStyle = color;
+	    context.beginPath();
+	    context.moveTo(init_x, init_y);
+            context.lineTo(new_x, new_y);
+            context.stroke();
+            context.closePath();
+	    new_x = new_x + 5
+	    new_y = -(new_x) * slope
+	    context.lineTo(new_x, new_y)
+	    if (new_x == theCanvas.width + 5) {
+		clearInterval(drawLineIntervalId); // stop animation when line is complete
+		status_message.innerHTML = "Click a button below the grid to graph an equation"
+	    }
+	}
+    }
 
         function reset_grid_buttonPressed(e) {
             theCanvas.width = theCanvas.width; // Reset grid
