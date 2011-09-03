@@ -82,8 +82,8 @@ function ev_mousemove (ev) {
 
     if (started) {
 
-      context.lineTo(x, y);
-      context.stroke();
+      context.arc(x, y, 7, (Math.PI/180)*0, (Math.PI/180)*360, false); // circle dimensions
+      context.fill();
     }
   }
 
@@ -104,7 +104,7 @@ function ev_touchmove (ev) {
     function ev_mousedown (ev) {
 	started = true;
         context.beginPath();
-	context.strokeStyle = colorChosen.innerHTML;
+	context.fillStyle = colorChosen.innerHTML;
     }
 
     function ev_touchstart (ev) {
