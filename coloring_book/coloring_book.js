@@ -19,24 +19,6 @@ function canvasApp(){
   	}else{
 	    var theCanvas = document.getElementById('canvas');
 	    var context = theCanvas.getContext('2d');
-	    var redCanvas = document.getElementById('red');
-	    var redContext = redCanvas.getContext('2d');
-	    var orangeCanvas = document.getElementById('orange');
-	    var orangeContext = orangeCanvas.getContext('2d');
-	    var yellowCanvas = document.getElementById('yellow');
-	    var yellowContext = yellowCanvas.getContext('2d');
-	    var greenCanvas = document.getElementById('green');
-	    var greenContext = greenCanvas.getContext('2d');
-	    var blueCanvas = document.getElementById('blue');
-	    var blueContext = blueCanvas.getContext('2d');
-	    var purpleCanvas = document.getElementById('purple');
-	    var purpleContext = purpleCanvas.getContext('2d');
-	    var brownCanvas = document.getElementById('brown');
-	    var brownContext = brownCanvas.getContext('2d');
-	    var blackCanvas = document.getElementById('black');
-	    var blackContext = blackCanvas.getContext('2d');
-	    var whiteCanvas = document.getElementById('white');
-	    var whiteContext = whiteCanvas.getContext('2d');
 	    var redButton = document.getElementById("red");
 	    var orangeButton = document.getElementById("orange");
 	    var yellowButton = document.getElementById("yellow");
@@ -48,6 +30,16 @@ function canvasApp(){
 	    var whiteButton = document.getElementById("white");
 	    var colorChosen = document.getElementById("color_chosen");
 	    var resetButton = document.getElementById("reset_dog");
+            redButton.addEventListener('click', redPressed, false);
+            orangeButton.addEventListener('click', orangePressed, false);
+            yellowButton.addEventListener('click', yellowPressed, false);
+            greenButton.addEventListener('click', greenPressed, false);
+            blueButton.addEventListener('click', bluePressed, false);
+            purpleButton.addEventListener('click', purplePressed, false);
+            brownButton.addEventListener('click', brownPressed, false);
+            blackButton.addEventListener('click', blackPressed, false);
+            whiteButton.addEventListener('click', whitePressed, false);
+            resetButton.addEventListener('click', resetPressed, false);
 	}
 
 	    var doggie = new Image();
@@ -57,7 +49,6 @@ function canvasApp(){
 
     function eventDoggieLoaded() {
 	drawScreen();
-	drawColorPalette();
     }
 
     function drawScreen() {
@@ -69,38 +60,6 @@ function canvasApp(){
 	context.strokeStyle = '#000000'; 
 	context.strokeRect(1,  1, theCanvas.width-2, theCanvas.height-2);
 	context.drawImage(doggie, 6, 6);
-    }
-
-    function drawColorPalette() {
-
-	redContext.fillStyle = 'red';
-	redContext.fillRect(0,0, redCanvas.width, redCanvas.height);
-	orangeContext.fillStyle = 'orange';
-	orangeContext.fillRect(0,0, orangeCanvas.width, orangeCanvas.height);
-	yellowContext.fillStyle = 'yellow';
-	yellowContext.fillRect(0,0, yellowCanvas.width, yellowCanvas.height);
-	greenContext.fillStyle = 'green';
-	greenContext.fillRect(0,0, greenCanvas.width, greenCanvas.height);
-	blueContext.fillStyle = 'blue';
-	blueContext.fillRect(0,0, blueCanvas.width, blueCanvas.height);
-	purpleContext.fillStyle = 'purple';
-	purpleContext.fillRect(0,0, purpleCanvas.width, purpleCanvas.height);
-	brownContext.fillStyle = 'brown';
-	brownContext.fillRect(0,0, brownCanvas.width, brownCanvas.height);
-	blackContext.fillStyle = 'black';
-	blackContext.fillRect(0,0, blackCanvas.width, blackCanvas.height);
-	whiteContext.strokeStyle = 'black';
-	whiteContext.strokeRect(1,1, whiteCanvas.width-2, whiteCanvas.height-2);
-        redButton.addEventListener('click', redPressed, false);
-        orangeButton.addEventListener('click', orangePressed, false);
-        yellowButton.addEventListener('click', yellowPressed, false);
-        greenButton.addEventListener('click', greenPressed, false);
-        blueButton.addEventListener('click', bluePressed, false);
-        purpleButton.addEventListener('click', purplePressed, false);
-        brownButton.addEventListener('click', brownPressed, false);
-        blackButton.addEventListener('click', blackPressed, false);
-        whiteButton.addEventListener('click', whitePressed, false);
-        resetButton.addEventListener('click', resetPressed, false);
     }
 
 // The mousemove event handler.
