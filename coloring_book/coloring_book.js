@@ -55,6 +55,9 @@ function canvasApp(){
 	theCanvas.addEventListener('mousemove', ev_mousemove, false);
 	theCanvas.addEventListener('mousedown', ev_mousedown, false);
 	theCanvas.addEventListener('mouseup', ev_mouseup, false);
+	theCanvas.addEventListener('touchmove', ev_touchmove, false);
+	theCanvas.addEventListener('touchstart', ev_touchstart, false);
+	theCanvas.addEventListener('touchend', ev_touchend, false);
 	context.fillStyle = 'white';
 	context.fillRect(0, 0, theCanvas.width, theCanvas.height);
 	context.strokeStyle = '#000000'; 
@@ -84,13 +87,38 @@ function ev_mousemove (ev) {
     }
   }
 
+function ev_touchmove (ev) {
+    var x, y;
+    if(ev.touches.length == 1){
+	var touch = ev.touches[0];
+	x = touch.pageX;
+	y = touch.pageY;
+	if (started) {
+	    
+	    context.lineTo(x, y);
+	    context.stroke();
+	}
+    }
+  }
+
     function ev_mousedown (ev) {
 	started = true;
         context.beginPath();
 	context.strokeStyle = colorChosen.innerHTML;
     }
 
+    function ev_touchstart (ev) {
+	started = true;
+        context.beginPath();
+	context.strokeStyle = colorChosen.innerHTML;
+    }
+
     function ev_mouseup (ev) {
+        context.closePath();
+	started = false;
+    }
+
+    function ev_touchend (ev) {
         context.closePath();
 	started = false;
     }
