@@ -3,6 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Digital Publishing Mini-Glossary</title>
+<script src="modernizr-1.6.min.js"></script>
+<script type="text/javascript">
+window.addEventListener('load', eventWindowLoaded, false);	
+
+function eventWindowLoaded() {
+    set_up_audio();
+}
+
+function set_up_audio() {
+    var epub_audio = document.getElementById("epub");
+    var mobi_audio = document.getElementById("mobi");
+    var pdf_audio = document.getElementById("pdf");
+    // Add play button functionality
+    var epub_play_button = document.getElementById("epub_button");
+    var mobi_play_button = document.getElementById("mobi_button");
+    var pdf_play_button = document.getElementById("pdf_button");
+    epub_play_button.addEventListener("click", play_epub, false);
+    mobi_play_button.addEventListener("click", play_mobi, false);
+    pdf_play_button.addEventListener("click", play_pdf, false);
+    function play_epub() {
+	epub_audio.play();
+    }
+    function play_mobi() {
+	mobi_audio.play();
+    }
+    function play_pdf() {
+	pdf_audio.play();
+    }
+}
 </script>
 <style media="screen" type="text/css">
 dl {
@@ -27,6 +56,7 @@ dd {
   border:2px solid;
   border-radius:6px;
   border-color: black;
+  background-color: gray;
 }
 
 dt .play-button {
@@ -38,19 +68,37 @@ dt .play-button {
 <h1>Digital Publishing Mini-Glossary</h1>
 <p>Click the <span class="play-button">&#x25b6;</span> button to hear the
   pronunciation of a term</p>
+<!--Audio content -->
+<audio id="epub">
+<source src="audio/epub.wav" type="audio/wav">
+<source src="audio/epub.mp3" type="audio/mp3">
+<source src="audio/epub.ogg" type="audio/ogg">
+<em>(Sorry, &lt;audio&gt; element not supported in your
+  browser/ereader.)</em>
+</audio>
+<audio id="mobi">
+<source src="audio/mobi.wav" type="audio/wav">
+<source src="audio/mobi.mp3" type="audio/mp3">
+<source src="audio/mobi.ogg" type="audio/ogg">
+</audio>
+<audio id="pdf">
+<source src="audio/pdf.wav" type="audio/wav">
+<source src="audio/pdf.mp3" type="audio/mp3">
+<source src="audio/pdf.ogg" type="audio/ogg">
+</audio>
 <div class="glossary">
 <dl>
-<dt>EPUB <span class="play-button">&#x25b6;</span></dt>
+<dt>EPUB <input type="submit" class="play-button" id="epub_button" value="&#x25b6;"/></dt>
 <dd>An open standard for reflowable ebook content created and maintained by the <a
   href="http://idpf.org/">International Digital Publishing Forum
   (IDPF)</a> based on HTML, CSS, and XML technologies. Version 3.0 of
   EPUB will support HTML5.</dd>
-<dt>Mobipocket <span class="play-button">&#x25b6;</span></dt>
+<dt>Mobipocket <input type="submit" class="play-button" id="mobi_button" value="&#x25b6;"/></dt>
 <dd>A proprietary standard for reflowable ebook content developed by <a
   href="http://en.wikipedia.org/wiki/Mobipocket">Mobipocket SA</a>,
   and used by Amazon on its hardware and software Kindle
   platforms.</dd>
-<dt>Portable Document Format (PDF) <span class="play-button">&#x25b6;</span></dt>
+<dt>Portable Document Format (PDF) <input type="submit" class="play-button" id="pdf_button" value="&#x25b6;"/></dt>
 <dd>An open standard for page-based (non-reflowable) electronic documents created by Adobe Systems
   that has been in use since the 1990s. Many ereader devices support PDF files, as well as EPUB or Mobi.</dd>
 </div>
