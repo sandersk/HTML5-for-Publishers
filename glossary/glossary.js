@@ -1,7 +1,13 @@
 window.addEventListener('load', eventWindowLoaded, false);	
 
 function eventWindowLoaded() {
-    set_up_audio();
+    if (audio_support()) {
+	set_up_audio();
+    }
+}
+
+function audio_support () {
+    return Modernizr.audio;
 }
 
 function set_up_audio() {
