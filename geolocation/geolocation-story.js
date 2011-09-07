@@ -1,58 +1,70 @@
-  function initialize() {
-    get_location();
+window.addEventListener('load', eventWindowLoaded, false);	
 
-      function draw_map(position) {
-	  var geo_lat = position.coords.latitude;
-	  var geo_long = position.coords.longitude;
+function eventWindowLoaded() {
+    if (Modernizr.geolocation) {
+	get_location();
+    } else {
+	alert("Sorry, your browser/ereader does not support geolocation.")
+    }
 
-	  var street_view = new google.maps.LatLng(geo_lat, geo_long);
-	  var viewOptions = {
-              position: street_view,
-              pov: {
-		  heading: 34,
-		  pitch: 10,
-		  zoom: 1
-              }
-	  };
-	  var street_view = new google.maps.StreetViewPanorama(document.getElementById("street_view"),viewOptions);
-	  // Geocode story
-          var geocoder;
-	  geocoder = new google.maps.Geocoder();
+    function get_location() {
+	if (Modernizr.geolocation) {
+	    navigator.geolocation.getCurrentPosition(geolocate_story, throw_error);
+	} else {
+	    // Do nothing. Sigh
+	}
+	
+	function throw_error(position) {
+            alert('Unable to geolocate you. Sorry.');
+	}
+    }
 
-	  var street_html_element = document.getElementById("street_name");
-	  var city_html_element = document.getElementById("city");
-	  var lat_and_long = new google.maps.LatLng(geo_lat, geo_long);
-	  geocoder.geocode({'latLng': lat_and_long}, function(geolocation_results, geocode_status) {
-	      if (geocode_status == google.maps.GeocoderStatus.OK) {
-		  if (geolocation_results[0]) {
-		      full_address = geolocation_results[0].formatted_address; // full address
-		      street_address = full_address.split(",")[0]; // Just use the street portion of the address
-		      street_html_element.innerHTML = street_address;
-		  } else {
-		      alert("Cannot update street address");
-		  }
-		  if (geolocation_results[3]) {
-		      full_city = geolocation_results[3].formatted_address; // city, state, and country
-		      city = full_city.split(",")[0]; // Just use the city portion of the address
-		      city_html_element.innerHTML = city;
-		  } else {
-		      alert("Cannot update city");
-		  }
-	      } else {
-		  alert("Geocoder failed due to: " + status);
-	      }
-	  });
-      }
+    function geolocate_story(position) {
+	var geo_lat = position.coords.latitude;
+	var geo_long = position.coords.longitude;
+	// Get weather information
+	$.ajax({
+	    type: 'GET',
+            url: 'http://ws.geonames.org/findNearByWeatherXML?lat=' + geo_lat + '&lng=' + geo_long,
+            dataType: 'xml',
+            success: function (weather_resp, xmlstatus) {
+		var temperature_celsius = $(weather_resp).find("temperature").text();
+		if (temperature_celsius != "") {
+		    // Weather temp data given in Celsius; convert to Fahrenheit, because I'm American
+		    var temperature_fahrenheit = 9/5*temperature_celsius + 32;
+		    $('#weather_temp').text(temperature_fahrenheit);
+		} else {
+		    $('#weather_temp').text("TEMP NOT FOUND");
+		}
+            },
+            error: function (xhr, status, error) {
+		$('#weather_temp').text("TEMP NOT FOUND");
+            }
+	})
+	// Get full location information
+	$.ajax({
+	    type: 'GET',
+            url: 'http://ws.geonames.org/extendedFindNearby?lat=' + geo_lat + '&lng=' + geo_long,
+            dataType: 'xml',
+            success: function (loc_resp, xmlstatus) {
+		var city_name = $(loc_resp).find("placename").text();
+		if (city_name != "") {
+		    $('#city').text(city_name);
+		} else {
+		    $('#city').text("CITY NOT FOUND");
+		}
+		var street_address = $(loc_resp).find("streetNumber").text() + " " + $(loc_resp).find("street").text();
+		if (street_address != "") {
+		    $('#street_address').text(street_address);
+		} else {
+		    $('#street_address').text("ADDRESS NOT FOUND");
+		}
+            },
+            error: function (xhr, status, error) {
+		$('#city').text("CITY NOT FOUND");
+		$('#street_address').text("ADDRESS NOT FOUND");
+            }
+	})
 
-      function get_location() {
-	  if (Modernizr.geolocation) {
-	      navigator.geolocation.getCurrentPosition(draw_map, throw_error);
-	  } else {
-	      // Do nothing. Sigh
-	  }
-	  
-	  function throw_error(position) {
-              alert('Unable to geolocate you. Sorry.');
-	  }
-      }
-  }
+    }
+}
