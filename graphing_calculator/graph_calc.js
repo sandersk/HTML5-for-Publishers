@@ -1,22 +1,18 @@
 window.addEventListener('load', eventWindowLoaded, false);	
 function eventWindowLoaded() {
-
-	canvasApp();
-	
+    canvasApp();
 }
 
 function canvasSupport () {
-  	return Modernizr.canvas;
+    return Modernizr.canvas;
 }
 
 
 function canvasApp(){
-
-	
-
+    
     if (!canvasSupport()) {
 	return;
-    }else{
+    } else {
 	var theCanvas = document.getElementById('canvas');
 	var context = theCanvas.getContext('2d');
 	
@@ -115,16 +111,17 @@ function canvasApp(){
 	    alert("Another line is being drawn. Please wait until it's complete");
 	} else {
 	    init_x = -(theCanvas.width)/2; // start with x = left edge of grid
+            // Note: Must reverse sign y-coordinate, as negative y-coordinates are top half of grid by default, not bottom
 	    init_y = -(init_x) * slope // y = mx
 	    new_x = init_x;
 	    new_y = init_y;
             var drawLineIntervalId = 0;
 	    status_message.innerHTML = "Drawing equation y = " + slope + "x";
 	    graph_in_progress = "yes" // line now being drawn
-            drawLineIntervalId = setInterval(start_animation, 33);
+            drawLineIntervalId = setInterval(do_animation, 33);
 	}
-	// Note: Must reverse sign y-coordinate, as negative y-coordinates are top half of grid by default, not bottom
-	function start_animation () {
+
+	function do_animation () {
 	    context.lineWidth = 6;
 	    context.strokeStyle = color;
 	    context.beginPath();
