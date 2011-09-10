@@ -23,6 +23,7 @@ function canvasApp(){
     }
     
     initGraphCalculator();
+    var graph_in_progress = "no"
     
     function initGraphCalculator() {
 	drawGrid();
@@ -78,7 +79,7 @@ function canvasApp(){
 	// Move canvas origin to center of grid
 	context.translate(can_width / 2, can_width / 2);
 	for (i=-3;i<=3;i++) {
-	    if (i != 0) {
+	    if (i != 0) { // Skip labeling origin
 		// horizontal label
 		context.fillText  (i, i*(can_width/8) + 5, 5);
 		// vertical label
@@ -109,13 +110,19 @@ function canvasApp(){
     }
 
     function draw_grid_line (slope, color) {
-	init_x = -(theCanvas.width)/2; // start with x = left edge of grid
-	init_y = -(init_x) * slope // y = mx
-	new_x = init_x;
-	new_y = init_y;
-        var drawLineIntervalId = 0;
-	status_message.innerHTML = "Drawing equation y = " + slope + "x";
-        drawLineIntervalId = setInterval(start_animation, 33);
+	if (graph_in_progress == "yes") {
+	    // Only draw one line at a time
+	    alert("Another line is being drawn. Please wait until it's complete");
+	} else {
+	    init_x = -(theCanvas.width)/2; // start with x = left edge of grid
+	    init_y = -(init_x) * slope // y = mx
+	    new_x = init_x;
+	    new_y = init_y;
+            var drawLineIntervalId = 0;
+	    status_message.innerHTML = "Drawing equation y = " + slope + "x";
+	    graph_in_progress = "yes" // line now being drawn
+            drawLineIntervalId = setInterval(start_animation, 33);
+	}
 	// Note: Must reverse sign y-coordinate, as negative y-coordinates are top half of grid by default, not bottom
 	function start_animation () {
 	    context.lineWidth = 6;
@@ -130,6 +137,7 @@ function canvasApp(){
 	    context.lineTo(new_x, new_y)
 	    if (new_x == theCanvas.width + 5) {
 		clearInterval(drawLineIntervalId); // stop animation when line is complete
+		graph_in_progress = "no" // line is now done
 		status_message.innerHTML = "Click a button below the grid to graph an equation"
 	    }
 	}
