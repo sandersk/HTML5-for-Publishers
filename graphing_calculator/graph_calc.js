@@ -14,95 +14,99 @@ function canvasApp(){
 
 	
 
-	if (!canvasSupport()) {
-			 return;
-  	}else{
-	    var theCanvas = document.getElementById('canvas');
-	    var context = theCanvas.getContext('2d');
-
-	}
-
-            initGraphCalculator();
+    if (!canvasSupport()) {
+	return;
+    }else{
+	var theCanvas = document.getElementById('canvas');
+	var context = theCanvas.getContext('2d');
 	
-	function initGraphCalculator() {
-	    drawGrid();
-	    var y_equals_x_button = document.getElementById("y_equals_x");
-            y_equals_x_button.addEventListener('click', y_equals_xPressed, false);
-	    var y_equals_negative_x_button = document.getElementById("y_equals_negative_x");
-            y_equals_negative_x_button.addEventListener('click', y_equals_negative_xPressed, false);
-	    var y_equals_two_x_button = document.getElementById("y_equals_two_x");
-            y_equals_two_x_button.addEventListener('click', y_equals_two_xPressed, false);
-	    var y_equals_one_half_x_button = document.getElementById("y_equals_one_half_x");
-            y_equals_one_half_x_button.addEventListener('click', y_equals_one_half_xPressed, false);
-	    var reset_grid_button = document.getElementById("reset_grid");
-            reset_grid_button.addEventListener('click', reset_grid_buttonPressed, false);
-            status_message = document.getElementById("status_message");
-        }
+    }
+    
+    initGraphCalculator();
+    
+    function initGraphCalculator() {
+	drawGrid();
+	var y_equals_x_button = document.getElementById("y_equals_x");
+        y_equals_x_button.addEventListener('click', y_equals_xPressed, false);
+	var y_equals_negative_x_button = document.getElementById("y_equals_negative_x");
+        y_equals_negative_x_button.addEventListener('click', y_equals_negative_xPressed, false);
+	var y_equals_two_x_button = document.getElementById("y_equals_two_x");
+        y_equals_two_x_button.addEventListener('click', y_equals_two_xPressed, false);
+	var y_equals_one_half_x_button = document.getElementById("y_equals_one_half_x");
+        y_equals_one_half_x_button.addEventListener('click', y_equals_one_half_xPressed, false);
+	var reset_grid_button = document.getElementById("reset_grid");
+        reset_grid_button.addEventListener('click', reset_grid_buttonPressed, false);
+        status_message = document.getElementById("status_message");
+    }
 
-	function drawGrid() {
-
-            var i = 0;
-            axis_pos = 1;
-	    can_width = theCanvas.width;
-
-	    // Loop through and draw horizontal/vertical lines at each eighth of the grid
-	    // All logic below presumes canvas has square dimensions
-	    for (i=0;i<=can_width;i+=(can_width)/8)
+    function drawGrid() {
+	
+        var i = 0;
+        axis_pos = 1;
+	can_width = theCanvas.width; // Get the width of the canvas
+	
+	// Loop through and draw horizontal/vertical lines at each eighth of the grid
+	// All logic below presumes canvas has square dimensions
+	for (i=0;i<=can_width;i+=(can_width)/8)
+        {
+            if (i == (can_width)/2) // Special handling for horiz/vert axes
             {
-                if (i == (can_width)/2) // Special handling for horiz/vert axes
-                {
-                    context.lineWidth = 3; // Axes are thicker...
-                    context.strokeStyle = 'red'; //... and in red
-                }
-                else
-                {
-                    context.lineWidth = 1;
-                    context.strokeStyle = 'black';
-                }
-                // First draw horizontal line
-                context.beginPath();
-                context.moveTo(i, 0);
-                context.lineTo(i, can_width);
-                context.stroke();
-                context.closePath();
-                // Then draw vertical line
-                context.beginPath();
-                context.moveTo(0, i);
-                context.lineTo(can_width, i);
-                context.stroke();
-                context.closePath();
-	    }
-                // Then add axis labels
-       		context.font         = '20px _sans';
-		context.textBaseline = 'top';
-		// Move canvas origin to center of grid
-		context.translate(can_width / 2, can_width / 2);
-		for (i=-3;i<=3;i++) {
-		    if (i != 0) {
-			// horizontal label
-			context.fillText  (i, i*(can_width/8) + 5, 5);
-			// vertical labels
-			context.fillText  (i, 5, -i*(can_width/8));
-		    }
-		}
+                context.lineWidth = 3; // Axes are thicker...
+                context.strokeStyle = 'red'; //... and in red
+            }
+            else
+            {
+                context.lineWidth = 1;
+                context.strokeStyle = 'black';
+            }
+            // First draw horizontal line
+            context.beginPath();
+            context.moveTo(i, 0);
+            context.lineTo(i, can_width);
+            context.stroke();
+            context.closePath();
+            // Then draw vertical line
+            context.beginPath();
+            context.moveTo(0, i);
+            context.lineTo(can_width, i);
+            context.stroke();
+            context.closePath();
 	}
+        // Then add axis number labels
+       	context.font         = '20px _sans';
+	context.textBaseline = 'top';
+	// Move canvas origin to center of grid
+	context.translate(can_width / 2, can_width / 2);
+	for (i=-3;i<=3;i++) {
+	    if (i != 0) {
+		// horizontal label
+		context.fillText  (i, i*(can_width/8) + 5, 5);
+		// vertical label
+		context.fillText  (i, 5, -i*(can_width/8));
+	    }
+	}
+	// Add bold-italic x- and y labels on the axes, too
+	context.font = 'italic bold 20px _sans';
+	context.fillText ("x", (can_width/2)-12, 1);
+	context.fillText ("y", 4, -(can_width/2));
+    }
 
   
-        function y_equals_xPressed(e) {
-	    draw_grid_line(1, "green");
-        }
+    function y_equals_xPressed(e) {
+	draw_grid_line(1, "green");
+    }
 
-        function y_equals_negative_xPressed(e) {
-	    draw_grid_line(-1, "purple");
-        }
-
-        function y_equals_two_xPressed(e) {
-	    draw_grid_line(2, "blue");
-        }
-
-        function y_equals_one_half_xPressed(e) {
-	    draw_grid_line(1/2, "brown");
-        }
+    function y_equals_negative_xPressed(e) {
+	draw_grid_line(-1, "purple");
+    }
+    
+    function y_equals_two_xPressed(e) {
+	draw_grid_line(2, "blue");
+    }
+    
+    function y_equals_one_half_xPressed(e) {
+	draw_grid_line(1/2, "brown");
+    }
 
     function draw_grid_line (slope, color) {
 	init_x = -(theCanvas.width)/2; // start with x = left edge of grid
@@ -131,9 +135,9 @@ function canvasApp(){
 	}
     }
 
-        function reset_grid_buttonPressed(e) {
-            theCanvas.width = theCanvas.width; // Reset grid
-            drawGrid();
-        }
+    function reset_grid_buttonPressed(e) {
+        theCanvas.width = theCanvas.width; // Reset grid
+        drawGrid();
+    }
 }
 
