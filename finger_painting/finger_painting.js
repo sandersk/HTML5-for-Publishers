@@ -70,9 +70,10 @@ function ev_mousemove (ev) {
     }
 
     if (started) {
-
+	context.beginPath();
       context.arc(x, y, 7, (Math.PI/180)*0, (Math.PI/180)*360, false);
       context.fill();
+        context.closePath();
     }
   }
 
@@ -91,13 +92,12 @@ function ev_touchmove (ev) {
 
     function ev_mousedown (ev) {
 	started = true;
-        context.beginPath();
 	context.fillStyle = colorChosen.innerHTML;
     }
 
 
     function ev_mouseup (ev) {
-        context.closePath();
+
 	started = false;
     }
 
