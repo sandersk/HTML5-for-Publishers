@@ -14,26 +14,26 @@ function canvasApp(){
     }else{
 	var theCanvas = document.getElementById('canvas');
 	var context = theCanvas.getContext('2d');
-	var redButton = document.getElementById("red");
-	var orangeButton = document.getElementById("orange");
-	var yellowButton = document.getElementById("yellow");
-	var greenButton = document.getElementById("green");
-	var blueButton = document.getElementById("blue");
-	var purpleButton = document.getElementById("purple");
-	var brownButton = document.getElementById("brown");
-	var blackButton = document.getElementById("black");
-	var whiteButton = document.getElementById("white");
+	var redButton = document.getElementById("Red");
+	var orangeButton = document.getElementById("Orange");
+	var yellowButton = document.getElementById("Yellow");
+	var greenButton = document.getElementById("Green");
+	var blueButton = document.getElementById("Blue");
+	var purpleButton = document.getElementById("Purple");
+	var brownButton = document.getElementById("Brown");
+	var blackButton = document.getElementById("Black");
+	var whiteButton = document.getElementById("White");
 	var colorChosen = document.getElementById("color_chosen");
-	var resetButton = document.getElementById("reset_dog");
-        redButton.addEventListener('click', redPressed, false);
-        orangeButton.addEventListener('click', orangePressed, false);
-        yellowButton.addEventListener('click', yellowPressed, false);
-        greenButton.addEventListener('click', greenPressed, false);
-        blueButton.addEventListener('click', bluePressed, false);
-        purpleButton.addEventListener('click', purplePressed, false);
-        brownButton.addEventListener('click', brownPressed, false);
-        blackButton.addEventListener('click', blackPressed, false);
-        whiteButton.addEventListener('click', whitePressed, false);
+	var resetButton = document.getElementById("reset_image");
+        redButton.addEventListener('click', colorPressed, false);
+        orangeButton.addEventListener('click', colorPressed, false);
+        yellowButton.addEventListener('click', colorPressed, false);
+        greenButton.addEventListener('click', colorPressed, false);
+        blueButton.addEventListener('click', colorPressed, false);
+        purpleButton.addEventListener('click', colorPressed, false);
+        brownButton.addEventListener('click', colorPressed, false);
+        blackButton.addEventListener('click', colorPressed, false);
+        whiteButton.addEventListener('click', colorPressed, false);
         resetButton.addEventListener('click', resetPressed, false);
 	drawScreen();
     }
@@ -96,47 +96,16 @@ function canvasApp(){
 	started = false;
     }
 
-    function redPressed (ev) {
-	colorChosen.innerHTML = "Red";
-    }
-
-    function orangePressed (ev) {
-	colorChosen.innerHTML = "Orange";
-    }
-
-    function yellowPressed (ev) {
-	colorChosen.innerHTML = "Yellow";
-    }
-
-    function greenPressed (ev) {
-	colorChosen.innerHTML = "Green";
-    }
-
-    function bluePressed (ev) {
-	colorChosen.innerHTML = "Blue";
-    }
-
-    function purplePressed (ev) {
-	colorChosen.innerHTML = "Purple";
-    }
-
-    function brownPressed (ev) {
-	colorChosen.innerHTML = "Brown";
-    }
-
-    function blackPressed (ev) {
-	colorChosen.innerHTML = "Black";
-    }
-
-    function whitePressed (ev) {
-	colorChosen.innerHTML = "White";
+    function colorPressed(e) {
+	var color_button_selected = e.target;
+	var color_id = color_button_selected.getAttribute('id');
+	colorChosen.innerHTML = color_id;
     }
 
     function resetPressed(e) {
         theCanvas.width = theCanvas.width; // Reset grid
         drawScreen();
     }
-
 }
 
         
