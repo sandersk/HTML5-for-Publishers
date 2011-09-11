@@ -1,11 +1,7 @@
 window.addEventListener('load', eventWindowLoaded, false);	
 
 function eventWindowLoaded() {
-    if (Modernizr.geolocation) {
-	get_location();
-    } else {
-	alert("Sorry, your browser/ereader does not support geolocation.")
-    }
+    get_location();
 
     function get_location() {
 	if (Modernizr.geolocation) {
