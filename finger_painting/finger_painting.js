@@ -39,8 +39,8 @@ function canvasApp(){
     }
 
     function drawScreen() {
+	theCanvas.addEventListener('mousedown', mouse_pressed_down, false);
 	theCanvas.addEventListener('mousemove', mouse_moved, false);
-	theCanvas.addEventListener('mousedown', mouse_held_down, false);
 	theCanvas.addEventListener('mouseup', mouse_released, false);
 	theCanvas.addEventListener('touchmove', touch_move_gesture, false);
 	context.fillStyle = 'white';
@@ -50,26 +50,29 @@ function canvasApp(){
     }
 
     // For the mouse_moved event handler.
-    var started = false;
+    var begin_drawing = false;
+
+    function mouse_pressed_down (ev) {
+	begin_drawing = true;
+	context.fillStyle = colorChosen.innerHTML;
+    }
 
     function mouse_moved (ev) {
-	var x, y;
-	
+	var x, y;	
 	// Get the mouse position in the canvas
-	if (ev.layerX || ev.layerX == 0) { // For Firefox
-	    x = ev.layerX;
-	    y = ev.layerY;
-	} else if (ev.offsetX || ev.offsetX == 0) { // For Opera
-	    x = ev.offsetX
-	    y = ev.offsetY
-	}
+	x = ev.pageX;
+	y = ev.pageY;
 
-	if (started) {
+	if (begin_drawing) {
 	    context.beginPath();
 	    context.arc(x, y, 7, (Math.PI/180)*0, (Math.PI/180)*360, false);
 	    context.fill();
             context.closePath();
 	}
+    }
+
+    function mouse_released (ev) {
+	begin_drawing = false;
     }
 
     function touch_move_gesture (ev) {
@@ -84,16 +87,6 @@ function canvasApp(){
 	    context.arc(x, y, 7, (Math.PI/180)*0, (Math.PI/180)*360, false);
 	    context.fill();
 	}
-    }
-
-    function mouse_held_down (ev) {
-	started = true;
-	context.fillStyle = colorChosen.innerHTML;
-    }
-
-
-    function mouse_released (ev) {
-	started = false;
     }
 
     function colorPressed(e) {
