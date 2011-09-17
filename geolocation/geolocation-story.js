@@ -7,7 +7,7 @@ function eventWindowLoaded() {
 	if (Modernizr.geolocation) {
 	    navigator.geolocation.getCurrentPosition(geolocate_story, throw_error);
 	} else {
-	    alert('Your browser does not support geolocation. Sorry.');
+	    alert('Your browser/ereader does not support geolocation. Sorry.');
 	}
 	
 	function throw_error(position) {
