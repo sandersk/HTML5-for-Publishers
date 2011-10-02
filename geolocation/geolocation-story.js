@@ -34,6 +34,7 @@ function eventWindowLoaded() {
 		}
             },
             error: function (xhr, status, error) {
+		alert(error);
 		$('#weather_temp').text("TEMP NOT FOUND");
             }
 	})
@@ -57,6 +58,7 @@ function eventWindowLoaded() {
 		}
             },
             error: function (xhr, status, error) {
+		alert(error);
 		$('#city').text("CITY NOT FOUND");
 		$('#street_address').text("ADDRESS NOT FOUND");
             }
