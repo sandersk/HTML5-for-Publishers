@@ -56,13 +56,13 @@ function canvasApp(){
                 context.lineWidth = 1;
                 context.strokeStyle = 'black';
             }
-            // First draw horizontal line
+            // First draw vertical line
             context.beginPath();
             context.moveTo(i, 0);
             context.lineTo(i, can_width);
             context.stroke();
             context.closePath();
-            // Then draw vertical line
+            // Then draw horizontal line
             context.beginPath();
             context.moveTo(0, i);
             context.lineTo(can_width, i);
