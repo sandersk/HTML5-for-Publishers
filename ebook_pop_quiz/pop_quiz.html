@@ -5,39 +5,46 @@
 <title>(e)Book Production Pop Quiz</title>
 <style media="screen" type="text/css">
 li.question {
-  font-weight: bold;
+  font-weight: bold
 }
 
 span.filename {
-  font-style: italic;
+  font-style: italic
 }
 
 ol.answers {
   margin-bottom: 20px;
-  -webkit-user-select: none; /* Prevents blue text selection
+  -webkit-user-select: none /* Prevents blue text selection
   highlights in Mobile Safari; see http://stackoverflow.com/questions/923782/disable-the-text-highlighting-magnifier-on-touch-hold-on-mobile-safari-webkit */
 }
 
 ol.answers li:hover {
-  font-weight: bold;
+  font-weight: bold
+}
+
+ol.answers li:active {
+  background-color: #C0C0C0;
+  -moz-transition: background-color 0.5s;
+  -webkit-transition: background-color 0.5s; 
+  -o-transition: background-color 0.5s
 }
 
 ol.answers li.wrong:active:after {
   content: " \2718  Sorry, that\2019s incorrect!";
-  color: red;
+  color: red
 }
 
 ol.answers li.correct:active:after {
   content: " \2713  Correct!";
-  color: green;
+  color: green
 }
 
 ol.mc_questions {
-  font-size: 1.5em;
+  font-size: 1.5em
 }
 
 ol.answers {
-  list-style: upper-alpha;
+  list-style: upper-alpha
 }
 </style>
 </head>
