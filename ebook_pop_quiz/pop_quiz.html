@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>(e)Book Production Pop Quiz</title>
+<script src="pop_quiz.js"></script>
 <style media="screen" type="text/css">
 li.question {
   font-weight: bold
@@ -23,21 +24,21 @@ ol.answers li:hover {
   font-weight: bold
 }
 
-ol.answers li:active {
+ol.answers li.wrong_active:after {
+  content: " \2718  Sorry, that\2019s incorrect!";
+  color: red;
+}
+
+ol.answers li.wrong_active, ol.answers li.correct_active {
   background-color: #C0C0C0;
   -moz-transition: background-color 0.5s;
   -webkit-transition: background-color 0.5s; 
   -o-transition: background-color 0.5s
 }
 
-ol.answers li.wrong:active:after {
-  content: " \2718  Sorry, that\2019s incorrect!";
-  color: red
-}
-
-ol.answers li.correct:active:after {
+ol.answers li.correct_active:after {
   content: " \2713  Correct!";
-  color: green
+  color: green;
 }
 
 ol.mc_questions {
@@ -49,7 +50,7 @@ ol.answers {
 }
 </style>
 </head>
-<body ontouchstart="">
+<body id="body_element">
 <!-- Empty ontouchstart event handler to enable "active" CSS selector -->
 <!-- in Mbile Safari; see http://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari -->
 <h1>(e)Book Production Pop Quiz</h1>
