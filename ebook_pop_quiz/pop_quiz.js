@@ -13,8 +13,8 @@ function loadEventHandlers() {
 	if (liClass == "wrong" || liClass == "correct") {
 	    liElements[i].addEventListener('mousedown', answerPressed, false);
 	    liElements[i].addEventListener('mouseup', answerReleased, false);
-	    liElements[i].addEventListener('ontouchstart', answerPressed, false);
-	    liElements[i].addEventListener('ontouchend', answerReleased, false);
+	    liElements[i].addEventListener('touchstart', answerPressed, false);
+	    liElements[i].addEventListener('touchend', answerReleased, false);
 	}
     }
 
