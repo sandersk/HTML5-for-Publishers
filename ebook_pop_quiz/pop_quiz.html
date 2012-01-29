@@ -4,6 +4,7 @@
 <head>
 <title>(e)Book Production Pop Quiz</title>
 <script src="pop_quiz.js"></script>
+<script src="jquery-1.6.2.min.js" type="text/javascript"></script>
 <style media="screen" type="text/css">
 li.question {
   font-weight: bold
@@ -11,6 +12,14 @@ li.question {
 
 span.filename {
   font-style: italic
+}
+
+.interactive {
+  display: none
+}
+
+#answers_section {
+  font-size: 1.5em;
 }
 
 ol.answers {
@@ -54,9 +63,13 @@ ol.answers {
 <!-- Empty ontouchstart event handler to enable "active" CSS selector -->
 <!-- in Mbile Safari; see http://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari -->
 <h1>(e)Book Production Pop Quiz</h1>
-<p>Test your knowledge of (e)book production with these
-multiple-choice questions. Click the letter next to each answer to see
+<div class="quiz">
+<p class="interactive">Test your knowledge of (e)book production with these
+multiple-choice questions. Click/tap the letter next to each answer to see
 if you&apos;re correct.</p>
+<p class="noninteractive">Test your knowledge of (e)book production
+  with these multiple-choice qustions. Check the <a
+  href="#answers_section">answers</a> to see if you are correct.</p>
 <ol class="mc_questions">
   <li class="question">How many points are there in a pica?
   <ol class="answers">
@@ -101,5 +114,16 @@ trade market in 2010?
   <li class="wrong">99.9%</li>
 </ol></li>
 </ol>
+</div>
+<div class="noninteractive" id="answers_section">
+  <h2>Answers</h2>
+  <ol>
+    <li>B</li>
+    <li>C</li>
+    <li>D</li>
+    <li>A</li>
+    <li>B</li>
+  </ol>
+</div>
 </body>
 </html>

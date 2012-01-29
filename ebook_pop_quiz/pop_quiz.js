@@ -1,6 +1,14 @@
 window.addEventListener('load', eventWindowLoaded, false);
 function eventWindowLoaded() {
+    toggleInteractiveContent();
     loadEventHandlers();
+}
+
+function toggleInteractiveContent() {
+    // Select all elements with "noninteractive" @class attributes on them, and hide them
+    $(".noninteractive").css("display", "none");
+    // Select all elements with "interactive" @class attribute, and delete that @class to make them appear
+    $(".interactive").removeClass("interactive");
 }
 
 function loadEventHandlers() {
