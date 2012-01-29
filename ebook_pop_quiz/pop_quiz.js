@@ -12,36 +12,36 @@ function toggleInteractiveContent() {
 }
 
 function loadEventHandlers() {
-    var bodyElement = document.getElementById('body_element');
-    var liElements = document.getElementsByTagName("li");
-    // Iterate through all <li>s in the array, which have indexes from 0 to (length of array - 1)
-    var num_lis = liElements.length - 1;
-    for (i=0;i<=num_lis;i++) {
-	liClass = liElements[i].getAttribute("class");
-	if (liClass == "wrong" || liClass == "correct") {
-	    liElements[i].addEventListener('mousedown', answerPressed, false);
-	    liElements[i].addEventListener('mouseup', answerReleased, false);
-	    liElements[i].addEventListener('touchstart', answerPressed, false);
-	    liElements[i].addEventListener('touchend', answerReleased, false);
+    $(".wrong, .correct, .wrong *, .correct *").bind('mousedown touchstart', function (e) {
+	// Prevent default UI behavior in iBooks for iPhone/iPad for <li>s
+	e.preventDefault();
+	var answerSelected = e.target;
+	var answerClass = answerSelected.getAttribute("class");
+	// Only change class values on main <li>, not any child elements thereof
+	if (answerClass == "wrong" || answerClass == "correct") {
+	    var answerNewClass = answerClass + "_active";
+	    answerSelected.setAttribute("class", answerNewClass);
+	} else {
+	    // If we're on a child of the <li>, look for parent <li> and trigger mousedown/touchstart on it
+	    $(this).parent('li.correct,li.wrong').trigger('mousedown');
+	    $(this).parent('li.correct,li.wrong').trigger('mouseup');
 	}
-    }
-
-    // Prevent default UI behavior in iBooks for iPhone/iPad for <li>s
-    function answerPressed(e) {
+    });
+    $(".wrong, .correct, .wrong *, .correct *").bind('mouseup touchend', function (e) {
+	// Prevent default UI behavior in iBooks for iPhone/iPad for <li>s
 	e.preventDefault();
 	var answerSelected = e.target;
-	var answerOldClass = answerSelected.getAttribute("class");
-	var answerNewClass = answerOldClass + "_active";
-	answerSelected.setAttribute("class", answerNewClass);
-    }
-
-    function answerReleased(e) {
-	e.preventDefault();
-	var answerSelected = e.target;
-	var answerOldClass = answerSelected.getAttribute("class");
-	var answerNewClass = answerOldClass.replace(/_active/, "");
-	answerSelected.setAttribute("class", answerNewClass);
-    }
+	var answerClass = answerSelected.getAttribute("class");
+	// Only change class values on main <li>, not any child elements thereof
+	if (answerClass == "wrong_active" || answerClass == "correct_active") {
+	    var answerNewClass = answerClass.replace(/_active/, "");
+	    answerSelected.setAttribute("class", answerNewClass);
+	} else {
+	    // If we're on a child of the <li>, look for parent <li> and trigger mouseup/touchend on it
+	    $(this).parent('li.correct_active,li.wrong_active').trigger('mouseup');
+	    $(this).parent('li.correct_active,li.wrong_active').trigger('touchend');
+	}
+    });
 }
 
         
