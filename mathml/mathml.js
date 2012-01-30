@@ -49,12 +49,39 @@ function MathMLApp(){
     }
 
     function updateFormula (e) {
+	// Start out with no error text
+	var errorText = "";
 	var aValue = $("#input_a").val();
-	if (aValue == "") { aValue = "a" } 
 	var bValue = $("#input_b").val();
-	if (bValue == "") { bValue = "b" } 
 	var cValue = $("#input_c").val();
-	if (cValue == "") { cValue = "c" }
+	var naturalNumPattern = /^[1-9][0-9]*$/;
+	if (aValue == "") {
+	    errorText += "Enter integer for <em>a</em><br/>";
+	    // Reset aValue to default of "a"
+	    aValue = "a";
+	} else if (!(aValue.match(naturalNumPattern))) {
+	    errorText += "Invalid value for <em>a</em>: " + aValue + "<br/>";
+	    // Reset aValue to default of "a"
+	    aValue = "a";
+	}
+	if (bValue == "") {
+	    errorText += "Enter integer for <em>b</em><br/>";
+	    // Reset bValue to default of "b"
+	    bValue = "b";
+	} else if (!(bValue.match(naturalNumPattern))) {
+	    errorText += "Invalid value for <em>b</em>: " + bValue + "<br/>";
+	    // Reset bValue to default of "b"
+	    bValue = "b";
+	}
+	if (cValue == "") {
+	    errorText += "Enter integer for <em>c</em><br/>";
+	    // Reset cValue to default of "c"
+	    cValue = "c";
+	} else if (!(cValue.match(naturalNumPattern))) {
+	    errorText += "Invalid value for <em>c</em>: " + cValue + "<br/>";
+	    // Reset cValue to default of "c"
+	    cValue = "c";
+	}
 	$("math .a").each(function() {
 	        $(this).text(aValue);
 	    });
@@ -64,6 +91,7 @@ function MathMLApp(){
 	$("math .c").each(function() {
 	        $(this).text(cValue);
 	    });
+	$("#error_log").html(errorText);
     }
      
 

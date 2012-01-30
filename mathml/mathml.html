@@ -75,7 +75,9 @@ form#formula_values {
   width: 300px;
 }
 
-
+#error_log {
+  color: red;
+}
 </style>
 </head>
 <body>
@@ -149,7 +151,7 @@ form#formula_values {
 </div>
 <form id="formula_values">
 <h3>Quadratic Equation Solver</h3>
-<p>Enter values for <span class="a">a</span>, <span class="b">b</span>, and <span class="c">c</span> to solve a quadratic equation:</p> 
+<p>Enter integer values for <span class="a">a</span>, <span class="b">b</span>, and <span class="c">c</span> to solve a quadratic equation:</p> 
 <label for="input_a" class="a"><em>a:</em></label>
 <input id="input_a" type="text" size="3"/>
 <label for="input_b" class="b"><em>b:</em></label>
@@ -158,5 +160,10 @@ form#formula_values {
 <input id="input_c" type="text" size="3"/>
 <br/>
 <input type="submit" value="Solve equation"/>
+<p id="error_log">
+Enter integer for <em>a</em><br/>
+Enter integer for <em>b</em><br/>
+Enter integer for <em>c</em><br/>
+</p>
 </body>
 </html>
