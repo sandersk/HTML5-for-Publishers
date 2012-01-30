@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>MathML Demo</title>
+<script src="mathml.js"></script>
+<script src="jquery-1.6.2.min.js"></script>
+<style media="screen" type="text/css">
+math.size_1 {
+  font-size: 1em
+}
+
+math.size_2 {
+  font-size: 2em
+}
+
+math.size_3 {
+  font-size: 3em
+}
+
+math.size_4 {
+  font-size: 4em
+}
+
+math.size_5 {
+  font-size: 5em
+}
+
+math .constant {
+ font-weight: bold
+}
+
+math .a {
+ color: red
+}
+
+math .b {
+ color: green
+}
+
+math .c {
+ color: blue
+}
+
+span.button {
+ -webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+border: 1px solid black;
+padding: 1px 1px 1px 1px;
+font-size: 2em;
+background-color: #C0C0C0;
+cursor:pointer;
+}
+
+</style>
+</head>
+<body>
+<p>Quadratic equations can be written in the form:</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" class="size_3" id="quadratic_equation">
+  <mrow>
+    <mi class="constant a">a</mi>
+    <mo>&InvisibleTimes;</mo>
+    <msup>
+      <mi>x</mi>
+      <mn>2</mn>
+    </msup>
+    <mo>+</mo>
+    <mi class="constant b">b</mi>
+    <mo>&InvisibleTimes;</mo>
+    <mi>x</mi>
+    <mo>+</mo>
+    <mi class="constant c">c</mi>
+    <mo>=</mo>
+    <mn>0</mn>
+  </mrow>
+</math>
+<p>Here&apos;s the formula for solving quadratic equations</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" class="size_3" id="quadratic_formula">
+  <mrow>
+    <mi>x</mi>
+    <mo>=</mo>
+    <mfrac>
+      <mrow>
+	<mo>-</mo>
+	<mi class="constant b">b</mi>
+	<mi>&#xb1;</mi>
+	<msqrt>
+	  <mrow>
+	    <msup>
+	      <mi class="constant b">b</mi>
+	      <mn>2</mn>
+	    </msup>
+	    <mo>-</mo>
+	    <mn>4</mn>
+	    <mo>&InvisibleTimes;</mo>
+	    <mi class="constant a">a</mi>
+	    <mo>&InvisibleTimes;</mo>
+	    <mi class="constant c">c</mi>
+	  </mrow>
+	</msqrt>
+      </mrow>
+      <mrow>
+	<mn>2</mn>
+	<mo>&InvisibleTimes;</mo>
+	<mi class="constant c">a</mi>
+      </mrow>
+    </mfrac>
+  </mrow>
+</math>
+<div class="buttons">
+<span class="button" id="down_button">&#x2212;</span>
+<span class="button" id="up_button">&#x2b;</span>
+</div>
+</body>
+</html>
