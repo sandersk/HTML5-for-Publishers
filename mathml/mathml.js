@@ -7,8 +7,14 @@ function MathMLApp(){
     var upButton = document.getElementById('up_button');
     var downButton = document.getElementById('down_button');
     var quadraticFormula = document.getElementById('quadratic_formula');
+    var inputA = document.getElementById('input_a');
+    var inputB = document.getElementById('input_b');
+    var inputC = document.getElementById('input_c');
     upButton.addEventListener('click', upButtonPressed, false);
     downButton.addEventListener('click', downButtonPressed, false);
+    inputA.addEventListener('blur', updateFormula, false);
+    inputB.addEventListener('blur', updateFormula, false);
+    inputC.addEventListener('blur', updateFormula, false);
 
     function upButtonPressed(e) {
 	// Get class attribute on quadratic formula element
@@ -41,6 +47,25 @@ function MathMLApp(){
 	    quadraticFormula.setAttribute("class", new_formula_size_class)
 	}
     }
+
+    function updateFormula (e) {
+	var aValue = $("#input_a").val();
+	if (aValue == "") { aValue = "a" } 
+	var bValue = $("#input_b").val();
+	if (bValue == "") { bValue = "b" } 
+	var cValue = $("#input_c").val();
+	if (cValue == "") { cValue = "c" }
+	$("math .a").each(function() {
+	        $(this).text(aValue);
+	    });
+	$("math .b").each(function() {
+	        $(this).text(bValue);
+	    });
+	$("math .c").each(function() {
+	        $(this).text(cValue);
+	    });
+    }
+     
 
 }
 

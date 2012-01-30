@@ -30,16 +30,32 @@ math .constant {
  font-weight: bold
 }
 
-math .a {
+.a {
  color: red
 }
 
-math .b {
+.b {
  color: green
 }
 
-math .c {
+.c {
  color: blue
+}
+
+.dot_operator {
+ color: gray
+}
+
+#input_a:focus {
+ background-color: #F2B1B7;
+}
+
+#input_b:focus {
+ background-color: #96CF91;
+}
+
+#input_c:focus {
+ background-color: #B59EF7;
 }
 
 span.button {
@@ -52,6 +68,13 @@ font-size: 2em;
 background-color: #C0C0C0;
 cursor:pointer;
 }
+
+form#formula_values {
+  padding: 10px;
+  border: 1px solid black;
+  width: 300px;
+}
+
 
 </style>
 </head>
@@ -76,6 +99,7 @@ cursor:pointer;
   </mrow>
 </math>
 <p>Here&apos;s the formula for solving quadratic equations</p>
+<div class="formula">
 <math xmlns="http://www.w3.org/1998/Math/MathML" class="size_3" id="quadratic_formula">
   <mrow>
     <mi>x</mi>
@@ -93,24 +117,46 @@ cursor:pointer;
 	    </msup>
 	    <mo>-</mo>
 	    <mn>4</mn>
-	    <mo>&InvisibleTimes;</mo>
+	    <mo class="dot_operator">&#x22c5;</mo>
 	    <mi class="constant a">a</mi>
-	    <mo>&InvisibleTimes;</mo>
+	    <mo class="dot_operator">&#x22c5;</mo>
 	    <mi class="constant c">c</mi>
 	  </mrow>
 	</msqrt>
       </mrow>
       <mrow>
 	<mn>2</mn>
-	<mo>&InvisibleTimes;</mo>
-	<mi class="constant c">a</mi>
+	<mo class="dot_operator">&#x22c5;</mo>
+	<mi class="constant a">a</mi>
       </mrow>
     </mfrac>
   </mrow>
 </math>
+</div>
+<div>
+  <math class="size_3" id="formula_solution">
+    <mrow linebreak="newline">
+      <mi linebreak="newline">x</mi><mo>=</mo><mfenced open="{" close="}" separators=","><mn>?</mn><mn>?</mn></mfenced>
+    </mrow>
+  </math>
+</div>
 <div class="buttons">
+<p>
 <span class="button" id="down_button">&#x2212;</span>
 <span class="button" id="up_button">&#x2b;</span>
+<-- Click these buttons to resize the quadratic formula
+</p>
 </div>
+<form id="formula_values">
+<h3>Quadratic Equation Solver</h3>
+<p>Enter values for <span class="a">a</span>, <span class="b">b</span>, and <span class="c">c</span> to solve a quadratic equation:</p> 
+<label for="input_a" class="a"><em>a:</em></label>
+<input id="input_a" type="text" size="3"/>
+<label for="input_b" class="b"><em>b:</em></label>
+<input id="input_b" type="text" size="3"/>
+<label for="input_c" class="c"><em>c:</em></label>
+<input id="input_c" type="text" size="3"/>
+<br/>
+<input type="submit" value="Solve equation"/>
 </body>
 </html>
