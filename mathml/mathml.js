@@ -10,11 +10,13 @@ function MathMLApp(){
     var inputA = document.getElementById('input_a');
     var inputB = document.getElementById('input_b');
     var inputC = document.getElementById('input_c');
+    var solveButton = document.getElementById('solve_button');
     upButton.addEventListener('click', upButtonPressed, false);
     downButton.addEventListener('click', downButtonPressed, false);
     inputA.addEventListener('blur', updateFormula, false);
     inputB.addEventListener('blur', updateFormula, false);
     inputC.addEventListener('blur', updateFormula, false);
+    solveButton.addEventListener('click', solveButtonPressed, false);
 
     function upButtonPressed(e) {
 	// Get class attribute on quadratic formula element
@@ -46,6 +48,12 @@ function MathMLApp(){
 	    new_formula_size_class = formula_size_class_prefix + '_' + String(new_formula_size);
 	    quadraticFormula.setAttribute("class", new_formula_size_class)
 	}
+    }
+
+    function solveButtonPressed(e) {
+	// Prevent default form-submission action and try to solve the equation
+    	e.preventDefault();
+	updateFormula(e);
     }
 
     function updateFormula (e) {
