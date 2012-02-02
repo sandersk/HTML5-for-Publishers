@@ -69,10 +69,25 @@ background-color: #C0C0C0;
 cursor:pointer;
 }
 
+span.up_button {
+  position: relative;
+  font-size: .5em;
+  top: -.5em;
+  cursor:pointer;
+}
+
+span.down_button {
+  position: relative;
+  font-size: .5em;
+  top: .5em;
+  left: -1.05em;
+  cursor:pointer;
+}
+
 form#formula_values {
   padding: 10px;
   border: 1px solid black;
-  width: 300px;
+  width: 400px;
 }
 
 #error_log {
@@ -144,22 +159,21 @@ form#formula_values {
 </div>
 <div class="buttons">
 <p>
-<span class="button" id="down_button">&#x2212;</span>
-<span class="button" id="up_button">&#x2b;</span>
+<span class="button" id="minus_button">&#x2212;</span>
+<span class="button" id="plus_button">&#x2b;</span>
 &lt;-- Click these buttons to resize the quadratic formula
 </p>
 </div>
 <form id="formula_values">
 <h3>Quadratic Equation Solver</h3>
 <p>Enter integer values for <span class="a">a</span>, <span class="b">b</span>, and <span class="c">c</span> to solve a quadratic equation:</p> 
-<label for="input_a" class="a"><em>a:</em></label>
-<input id="input_a" type="number" size="3"/>
+<p><label for="input_a" class="a"><em>a:</em></label>
+<input id="input_a" size="3"/> <span id="up_a" class="up_button">&#x25b2;</span><span id="down_a" class="down_button">&#x25bc;</span>
 <label for="input_b" class="b"><em>b:</em></label>
-<input id="input_b" type="number" size="3"/>
+<input id="input_b"  size="3"/> <span id="up_b" class="up_button">&#x25b2;</span><span id="down_b" class="down_button">&#x25bc;</span>
 <label for="input_c" class="c"><em>c:</em></label>
-<input id="input_c" type="number" size="3"/>
-<br/>
-<input id="solve_button" type="submit" value="Solve equation"/>
+<input id="input_c"  size="3"/> <span id="up_c" class="up_button">&#x25b2;</span><span id="down_c" class="down_button">&#x25bc;</span></p>
+<p><input id="solve_button" type="submit" value="Solve equation"/></p>
 <p id="error_log">
 Enter integer for <em>a</em><br/>
 Enter integer for <em>b</em><br/>

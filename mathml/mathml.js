@@ -4,21 +4,53 @@ function eventWindowLoaded() {
 }
 
 function MathMLApp(){
-    var upButton = document.getElementById('up_button');
-    var downButton = document.getElementById('down_button');
+    var plusButton = document.getElementById('plus_button');
+    var minusButton = document.getElementById('minus_button');
     var quadraticFormula = document.getElementById('quadratic_formula');
     var inputA = document.getElementById('input_a');
     var inputB = document.getElementById('input_b');
     var inputC = document.getElementById('input_c');
     var solveButton = document.getElementById('solve_button');
-    upButton.addEventListener('click', upButtonPressed, false);
-    downButton.addEventListener('click', downButtonPressed, false);
+    plusButton.addEventListener('click', plusButtonPressed, false);
+    minusButton.addEventListener('click', minusButtonPressed, false);
     inputA.addEventListener('blur', updateFormula, false);
     inputB.addEventListener('blur', updateFormula, false);
     inputC.addEventListener('blur', updateFormula, false);
     solveButton.addEventListener('click', solveButtonPressed, false);
+    
+    $(".up_button").bind('click', function(e) {
+	    var upButtonPressed = e.target;
+	    var upButtonId = upButtonPressed.getAttribute("id");
+	    var correspondingInputId = upButtonId.replace(/up/, 'input');
+	    var correspondingInputElement = document.getElementById(correspondingInputId);
+	    var currentInputValue = $(correspondingInputElement).val();
+	    if (currentInputValue != "") {
+		var newInputValue = parseInt(currentInputValue) + 1;
+		$(correspondingInputElement).val(newInputValue);
+		updateFormula();
+	    } else {
+		$(correspondingInputElement).val("1");
+		updateFormula();
+	    }
+	});
 
-    function upButtonPressed(e) {
+    $(".down_button").bind('click', function(e) {
+	    var downButtonPressed = e.target;
+	    var downButtonId = downButtonPressed.getAttribute("id");
+	    var correspondingInputId = downButtonId.replace(/down/, 'input');
+	    var correspondingInputElement = document.getElementById(correspondingInputId);
+	    var currentInputValue = $(correspondingInputElement).val();
+	    if (currentInputValue != "") {
+		var newInputValue = parseInt(currentInputValue) - 1;
+		$(correspondingInputElement).val(newInputValue);
+		updateFormula();
+	    } else {
+		$(correspondingInputElement).val("-1");
+		updateFormula();
+	    }
+	});
+
+    function plusButtonPressed(e) {
 	// Get class attribute on quadratic formula element
 	formula_size_class = quadraticFormula.getAttribute("class");
 	// Extract size value
@@ -34,7 +66,7 @@ function MathMLApp(){
 	}
     }
 
-    function downButtonPressed(e) {
+    function minusButtonPressed(e) {
 	// Get class attribute on quadratic formula element
 	formula_size_class = quadraticFormula.getAttribute("class");
 	// Extract size value
