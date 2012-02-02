@@ -51,35 +51,51 @@ function MathMLApp(){
 	});
 
     function plusButtonPressed(e) {
-	// Get class attribute on quadratic formula element
-	formula_size_class = quadraticFormula.getAttribute("class");
-	// Extract size value
-        formula_size_class_prefix = formula_size_class.split('_')[0];
-	existing_formula_size = Number(formula_size_class.split('_')[1]);
-	new_formula_size = existing_formula_size + 1;
-	if (new_formula_size > 5) {
-	    alert("Formula already displayed at maximum size");
-	}
-	else {
-	    new_formula_size_class = formula_size_class_prefix + '_' + String(new_formula_size);
-	    quadraticFormula.setAttribute("class", new_formula_size_class)
-	}
+	// Get all elements of @class "resizable"
+	$(".resizable").each(function() {
+		var resizableClass = $(this).attr("class");
+		// Strip out "resizable" from class to get the size value
+		var sizeValue = resizableClass.replace(/ resizable/, '');
+		// Extract size value
+		formulaSizeClassPrefix = sizeValue.split('_')[0];
+		existingFormulaSize = Number(sizeValue.split('_')[1]);
+		newFormulaSize = existingFormulaSize + 1;
+		if (newFormulaSize > 5) {
+		    alert("Formulas already displayed at maximum size");
+		    // Exit jQuery each() loop
+		    return false;
+		}
+		else {
+		    newFormulaSizeClass = formulaSizeClassPrefix + '_' + String(newFormulaSize);
+		    // Reconstruct new @class attribute and update element
+		    newClassAttribute = newFormulaSizeClass + " resizable";
+		    $(this).attr('class', newClassAttribute);
+		}
+	    });
     }
 
     function minusButtonPressed(e) {
-	// Get class attribute on quadratic formula element
-	formula_size_class = quadraticFormula.getAttribute("class");
-	// Extract size value
-        formula_size_class_prefix = formula_size_class.split('_')[0];
-	existing_formula_size = Number(formula_size_class.split('_')[1]);
-	new_formula_size = existing_formula_size - 1;
-	if (new_formula_size < 1) {
-	    alert("Formula already displayed at minimum size");
-	}
-	else {
-	    new_formula_size_class = formula_size_class_prefix + '_' + String(new_formula_size);
-	    quadraticFormula.setAttribute("class", new_formula_size_class)
-	}
+	// Get all elements of @class "resizable"
+	$(".resizable").each(function() {
+		var resizableClass = $(this).attr("class");
+		// Strip out "resizable" from class to get the size value
+		var sizeValue = resizableClass.replace(/ resizable/, '');
+		// Extract size value
+		formulaSizeClassPrefix = sizeValue.split('_')[0];
+		existingFormulaSize = Number(sizeValue.split('_')[1]);
+		newFormulaSize = existingFormulaSize - 1;
+		if (newFormulaSize < 1) {
+		    alert("Formulas already displayed at minimum size");
+		    // Exit jQuery each() loop
+		    return false;
+		}
+		else {
+		    newFormulaSizeClass = formulaSizeClassPrefix + '_' + String(newFormulaSize);
+		    // Reconstruct new @class attribute and update element
+		    newClassAttribute = newFormulaSizeClass + " resizable";
+		    $(this).attr('class', newClassAttribute);
+		}
+	    });
     }
 
     function solveButtonPressed(e) {

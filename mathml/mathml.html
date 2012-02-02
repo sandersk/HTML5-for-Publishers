@@ -97,7 +97,7 @@ form#formula_values {
 </head>
 <body>
 <p>Quadratic equations can be written in the form:</p>
-<math xmlns="http://www.w3.org/1998/Math/MathML" class="size_3" id="quadratic_equation">
+<math xmlns="http://www.w3.org/1998/Math/MathML" class="size_3 resizable" id="quadratic_equation">
   <mrow>
     <mi class="constant a">a</mi>
     <mo>&InvisibleTimes;</mo>
@@ -117,7 +117,7 @@ form#formula_values {
 </math>
 <p>Here&apos;s the formula for solving quadratic equations</p>
 <div class="formula">
-<math xmlns="http://www.w3.org/1998/Math/MathML" class="size_3" id="quadratic_formula">
+<math xmlns="http://www.w3.org/1998/Math/MathML" class="size_3 resizable" id="quadratic_formula">
   <mrow>
     <mi>x</mi>
     <mo>=</mo>
@@ -151,9 +151,11 @@ form#formula_values {
 </math>
 </div>
 <div>
-  <math class="size_3" id="formula_solution">
+  <math class="size_3 resizable" id="formula_solution">
     <mrow>
-      <mi>x</mi><mo>=</mo><mfenced open="{" close="}" separators=","><mn id="equation_solution">?</mn></mfenced>
+      <mi>x</mi><mo>=</mo>
+      <!-- Wanted to use "mfenced" here, but it rendered badly in some browsers -->
+      <mo>{</mo><mn id="equation_solution">?</mn><mo>}</mo>
     </mrow>
   </math>
 </div>
@@ -161,7 +163,7 @@ form#formula_values {
 <p>
 <span class="button" id="minus_button">&#x2212;</span>
 <span class="button" id="plus_button">&#x2b;</span>
-&lt;-- Click these buttons to resize the quadratic formula
+&lt;-- Click these buttons to resize the quadratic equation and formula
 </p>
 </div>
 <form id="formula_values">
