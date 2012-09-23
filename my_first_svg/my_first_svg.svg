@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <!-- To start, draw a border -->
+  <rect x="10" y="10" width="200" height="225" stroke="black" fill="transparent" stroke-width="1px"/>
+  <!-- Now, draw face: a circle at (110,110) with radius of 75, a black border, and a yellow fill -->
+  <circle cx="110" cy="110" r="75" stroke="black" fill="yellow"/>
+  <!-- Now draw left eye: a circle at (75,80) with radius of 10, a black border and a black fill -->
+  <circle cx="75" cy="80" r="10" stroke="black" fill="black"/>
+  <!-- Now draw right eye: a circle at (145,80) with radius of 10, a black border and a black fill -->
+  <circle cx="145" cy="80" r="10" stroke="black" fill="black"/>
+  <!-- Now draw smile: an arc starting at (74,130) with an x/y radius of 35, and ending at 149,130 -->
+  <path d="M74,130 A35,35 0 0,0 149,130" stroke="black" stroke-width="6px" fill="transparent"/>
+  <!-- Smiley speaks: write text starting at (60,210) --> 
+  <text x="60" y="210" font-family="sans-serif">Hello Canvas!</text>
+</svg>
