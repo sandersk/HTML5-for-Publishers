@@ -10,5 +10,5 @@
   <!-- Now draw smile: an arc starting at (74,130) with an x/y radius of 35, and ending at 149,130 -->
   <path d="M74,130 A35,35 0 0,0 149,130" stroke="black" stroke-width="6px" fill="transparent"/>
   <!-- Smiley speaks: write text starting at (60,210) --> 
-  <text x="60" y="210" font-family="sans-serif">Hello Canvas!</text>
+  <text x="60" y="210" font-family="sans-serif">Hello SVG!</text>
 </svg>
