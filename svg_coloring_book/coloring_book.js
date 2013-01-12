@@ -2,6 +2,22 @@ window.addEventListener('load', eventWindowLoaded, false);
 
 function eventWindowLoaded() {
 
+    // Source the coloring book image into the document
+       $.ajax({
+	    type: 'GET',
+	    url: 'cartoon_sleeping_cat.svg',
+            dataType: 'html',
+            success: function (svg_resp, xmlstatus) {
+		$('#coloring_book_image').append(svg_resp);
+                add_coloring_book_events();
+            },
+            error: function (xhr, status, error) {
+		alert(error);
+            }
+	});
+}
+
+function add_coloring_book_events() {
     // Add click events for colorable portions of drawing
     $('.colorable').bind("click", function(event) {
 	// Set the fill of clicked portion of drawing to the color chosen in palette below
