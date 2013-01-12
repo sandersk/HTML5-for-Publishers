@@ -16,4 +16,10 @@ function eventWindowLoaded() {
        // Set color_chosen text to the name of color clicked
        $("#color_chosen").html(color_chosen); 
     });
+
+    // Add click events for reset button, which reverts the fill of the entire drawing to white
+    $('#reset_image').bind("click", function(event) {
+       // Get all the colorable elements and set fill back to white
+       $('.colorable').attr("fill", "white");
+    });
 }
