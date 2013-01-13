@@ -19,7 +19,8 @@ function eventWindowLoaded() {
 
 function add_coloring_book_events() {
     // Add click events for colorable portions of drawing
-    $('.colorable').bind("click", function(event) {
+    // Oddly, the selector $('path.colorable') does not work in iBooks reader, although it does in Mobile Safari
+    $('path[class="colorable"]').bind("click", function(event) {
 	// Set the fill of clicked portion of drawing to the color chosen in palette below
 	color_chosen = $("#color_chosen").html();
         $(this).attr("fill", color_chosen); 
@@ -36,6 +37,6 @@ function add_coloring_book_events() {
     // Add click events for reset button, which reverts the fill of the entire drawing to white
     $('#reset_image').bind("click", function(event) {
        // Get all the colorable elements and set fill back to white
-       $('.colorable').attr("fill", "white");
+       $('path[class="colorable"]').attr("fill", "white");
     });
 }
