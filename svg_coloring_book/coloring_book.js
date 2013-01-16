@@ -35,6 +35,12 @@ function add_coloring_book_events() {
     });
 
     $('#undo_redo').bind("click", function(event) {
+	// First, save the existing color of the element we're going to undo
+	existing_color = $(undo_element).attr("fill");
+	// Now revert the color back to the undo_to_color
+	$(undo_element).attr("fill", undo_to_color);
+	// Finally, make existing_color the new undo_to_color, to support "Redo" functionality
+	undo_to_color = existing_color;
 	// If the button is named "Undo", rename it "Redo" and vice versa
 	if ($(this).attr("value") == "Undo") {
 	    $(this).attr("value", "Redo");
