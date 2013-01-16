@@ -1,4 +1,6 @@
-window.addEventListener('load', eventWindowLoaded, false);	
+window.addEventListener('load', eventWindowLoaded, false);
+var undo_element = $('path[class="colorable"]')[0];
+var undo_to_color = "white";	
 
 function eventWindowLoaded() {
    add_coloring_book_events();
@@ -25,5 +27,14 @@ function add_coloring_book_events() {
     $('#reset_image').bind("click", function(event) {
        // Get all the colorable elements and set fill back to white
        $('path[class="colorable"]').attr("fill", "white");
+    });
+
+    $('#undo_redo').bind("click", function(event) {
+	// If the button is named "Undo", rename it "Redo" and vice versa
+	if ($(this).attr("value") == "Undo") {
+	    $(this).attr("value", "Redo");
+	} else {
+	    $(this).attr("value", "Undo");
+	}
     });
 }
