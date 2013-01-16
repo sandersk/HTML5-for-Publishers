@@ -30,8 +30,12 @@ function add_coloring_book_events() {
 
     // Add click events for reset button, which reverts the fill of the entire drawing to white
     $('#reset_image').bind("click", function(event) {
-       // Get all the colorable elements and set fill back to white
-       $('path[class="colorable"]').attr("fill", "white");
+	// Get all the colorable elements and set fill back to white
+	$('path[class="colorable"]').attr("fill", "white");
+	// Resetting the drawing clears all undo information
+	$('#undo_redo').attr("value", "Undo");
+	undo_element = $('path[class="colorable"]')[0];
+	undo_to_color = "white";
     });
 
     $('#undo_redo').bind("click", function(event) {
