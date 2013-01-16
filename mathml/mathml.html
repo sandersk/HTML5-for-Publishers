@@ -6,67 +6,46 @@
 <script src="mathml.js"></script>
 <script src="jquery-1.6.2.min.js"></script>
 <style media="screen" type="text/css">
-math.size_1 {
-  font-size: 1em
+math.size_1 { font-size: 1em }
+
+math.size_2 { font-size: 2em }
+
+math.size_3 { font-size: 3em }
+
+math.size_4 { font-size: 4em }
+
+math.size_5 { font-size: 5em }
+
+math .constant { font-weight: bold }
+
+.a { color: red }
+
+.b { color: green }
+
+.c { color: blue }
+
+.invisible_times {
+ display: none;
+ font-size: 0; /* necessary to suppress in Google Chrome */
 }
 
-math.size_2 {
-  font-size: 2em
-}
+.dot_operator { color: gray }
 
-math.size_3 {
-  font-size: 3em
-}
+#input_a:focus { background-color: #F2B1B7 }
 
-math.size_4 {
-  font-size: 4em
-}
+#input_b:focus { background-color: #96CF91 }
 
-math.size_5 {
-  font-size: 5em
-}
-
-math .constant {
- font-weight: bold
-}
-
-.a {
- color: red
-}
-
-.b {
- color: green
-}
-
-.c {
- color: blue
-}
-
-.dot_operator {
- color: gray
-}
-
-#input_a:focus {
- background-color: #F2B1B7;
-}
-
-#input_b:focus {
- background-color: #96CF91;
-}
-
-#input_c:focus {
- background-color: #B59EF7;
-}
+#input_c:focus { background-color: #B59EF7 }
 
 span.button {
  -webkit-border-radius: 3px;
--moz-border-radius: 3px;
-border-radius: 3px;
-border: 1px solid black;
-padding: 1px 1px 1px 1px;
-font-size: 2em;
-background-color: #C0C0C0;
-cursor:pointer;
+ -moz-border-radius: 3px;
+ border-radius: 3px;
+ border: 1px solid black;
+ padding: 1px 1px 1px 1px;
+ font-size: 2em;
+ background-color: #C0C0C0;
+ cursor:pointer;
 }
 
 span.up_button {
@@ -90,9 +69,7 @@ form#formula_values {
   width: 400px;
 }
 
-#error_log {
-  color: red;
-}
+#error_log { color: red; }
 </style>
 </head>
 <body>
@@ -100,14 +77,14 @@ form#formula_values {
 <math xmlns="http://www.w3.org/1998/Math/MathML" class="size_3 resizable" id="quadratic_equation">
   <mrow>
     <mi class="constant a">a</mi>
-    <mo>&InvisibleTimes;</mo>
+    <mo class="invisible_times">&InvisibleTimes;</mo>
     <msup>
       <mi>x</mi>
       <mn>2</mn>
     </msup>
     <mo>+</mo>
     <mi class="constant b">b</mi>
-    <mo>&InvisibleTimes;</mo>
+    <mo class="invisible_times">&InvisibleTimes;</mo>
     <mi>x</mi>
     <mo>+</mo>
     <mi class="constant c">c</mi>
