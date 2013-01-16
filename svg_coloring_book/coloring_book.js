@@ -10,6 +10,11 @@ function add_coloring_book_events() {
     // Add click events for colorable portions of drawing
     // Oddly, the selector $('path.colorable') does not work in iBooks reader, although it does in Mobile Safari
     $('path[class="colorable"]').bind("click", function(event) {
+	// Get the current element and color and save it in undo_element and undo_to_color variables
+	undo_element = this;
+	undo_to_color = $(this).attr("fill");
+	// Toggle the "Undo" button to make sure it says "Undo" (it might say "Redo")
+	$('#undo_redo').attr("value", "Undo");
 	// Set the fill of clicked portion of drawing to the color chosen in palette below
 	color_chosen = $("#color_chosen").html();
         $(this).attr("fill", color_chosen); 
