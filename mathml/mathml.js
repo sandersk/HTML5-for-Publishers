@@ -1,22 +1,16 @@
-window.addEventListener('load', eventWindowLoaded, false);	
+window.addEventListener('load', eventWindowLoaded, false);
 function eventWindowLoaded() {
     MathMLApp();
 }
 
 function MathMLApp(){
-    var plusButton = document.getElementById('plus_button');
-    var minusButton = document.getElementById('minus_button');
-    var quadraticFormula = document.getElementById('quadratic_formula');
     var inputA = document.getElementById('input_a');
     var inputB = document.getElementById('input_b');
     var inputC = document.getElementById('input_c');
-    var solveButton = document.getElementById('solve_button');
-    plusButton.addEventListener('click', plusButtonPressed, false);
-    minusButton.addEventListener('click', minusButtonPressed, false);
+
     inputA.addEventListener('blur', updateFormula, false);
     inputB.addEventListener('blur', updateFormula, false);
     inputC.addEventListener('blur', updateFormula, false);
-    solveButton.addEventListener('click', solveButtonPressed, false);
     
     $(".up_button").bind('click', function(e) {
 	    var upButtonPressed = e.target;
@@ -50,7 +44,7 @@ function MathMLApp(){
 	    }
 	});
 
-    function plusButtonPressed(e) {
+    $("#plus_button").bind('click', function(e) {
 	// Get all elements of @class "resizable"
 	$(".resizable").each(function() {
 		var resizableClass = $(this).attr("class");
@@ -72,9 +66,9 @@ function MathMLApp(){
 		    $(this).attr('class', newClassAttribute);
 		}
 	    });
-    }
+    });
 
-    function minusButtonPressed(e) {
+    $("#minus_button").bind('click', function(e) {
 	// Get all elements of @class "resizable"
 	$(".resizable").each(function() {
 		var resizableClass = $(this).attr("class");
@@ -96,13 +90,13 @@ function MathMLApp(){
 		    $(this).attr('class', newClassAttribute);
 		}
 	    });
-    }
+    });
 
-    function solveButtonPressed(e) {
+    $("#solve_button").bind('click', function(e) {
 	// Prevent default form-submission action and try to solve the equation
     	e.preventDefault();
 	updateFormula(e);
-    }
+    });
 
     function updateFormula (e) {
 	// Start out with no error text
