@@ -4,13 +4,9 @@ function eventWindowLoaded() {
 }
 
 function MathMLApp(){
-    var inputA = document.getElementById('input_a');
-    var inputB = document.getElementById('input_b');
-    var inputC = document.getElementById('input_c');
-
-    inputA.addEventListener('blur', updateFormula, false);
-    inputB.addEventListener('blur', updateFormula, false);
-    inputC.addEventListener('blur', updateFormula, false);
+    $("#input_a").bind('blur', updateFormula);
+    $("#input_b").bind('blur', updateFormula);
+    $("#input_c").bind('blur', updateFormula);
     
     $(".up_button").bind('click', function(e) {
 	    var upButtonPressed = e.target;
