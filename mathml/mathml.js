@@ -4,42 +4,6 @@ function eventWindowLoaded() {
 }
 
 function MathMLApp(){
-    $("#input_a").bind('blur', updateFormula);
-    $("#input_b").bind('blur', updateFormula);
-    $("#input_c").bind('blur', updateFormula);
-    
-    $(".up_button").bind('click', function(e) {
-	    var upButtonPressed = e.target;
-	    var upButtonId = upButtonPressed.getAttribute("id");
-	    var correspondingInputId = upButtonId.replace(/up/, 'input');
-	    var correspondingInputElement = document.getElementById(correspondingInputId);
-	    var currentInputValue = $(correspondingInputElement).val();
-	    if (currentInputValue != "") {
-		var newInputValue = parseInt(currentInputValue) + 1;
-		$(correspondingInputElement).val(newInputValue);
-		updateFormula();
-	    } else {
-		$(correspondingInputElement).val("1");
-		updateFormula();
-	    }
-	});
-
-    $(".down_button").bind('click', function(e) {
-	    var downButtonPressed = e.target;
-	    var downButtonId = downButtonPressed.getAttribute("id");
-	    var correspondingInputId = downButtonId.replace(/down/, 'input');
-	    var correspondingInputElement = document.getElementById(correspondingInputId);
-	    var currentInputValue = $(correspondingInputElement).val();
-	    if (currentInputValue != "") {
-		var newInputValue = parseInt(currentInputValue) - 1;
-		$(correspondingInputElement).val(newInputValue);
-		updateFormula();
-	    } else {
-		$(correspondingInputElement).val("-1");
-		updateFormula();
-	    }
-	});
-
     $("#plus_button").bind('click', function(e) {
 	// Get all elements of @class "resizable"
 	$(".resizable").each(function() {
@@ -87,6 +51,42 @@ function MathMLApp(){
 		}
 	    });
     });
+
+    $(".up_button").bind('click', function(e) {
+	    var upButtonPressed = e.target;
+	    var upButtonId = upButtonPressed.getAttribute("id");
+	    var correspondingInputId = upButtonId.replace(/up/, 'input');
+	    var correspondingInputElement = document.getElementById(correspondingInputId);
+	    var currentInputValue = $(correspondingInputElement).val();
+	    if (currentInputValue != "") {
+		var newInputValue = parseInt(currentInputValue) + 1;
+		$(correspondingInputElement).val(newInputValue);
+		updateFormula();
+	    } else {
+		$(correspondingInputElement).val("1");
+		updateFormula();
+	    }
+	});
+
+    $(".down_button").bind('click', function(e) {
+	    var downButtonPressed = e.target;
+	    var downButtonId = downButtonPressed.getAttribute("id");
+	    var correspondingInputId = downButtonId.replace(/down/, 'input');
+	    var correspondingInputElement = document.getElementById(correspondingInputId);
+	    var currentInputValue = $(correspondingInputElement).val();
+	    if (currentInputValue != "") {
+		var newInputValue = parseInt(currentInputValue) - 1;
+		$(correspondingInputElement).val(newInputValue);
+		updateFormula();
+	    } else {
+		$(correspondingInputElement).val("-1");
+		updateFormula();
+	    }
+	});
+
+    $("#input_a").bind('blur', updateFormula);
+    $("#input_b").bind('blur', updateFormula);
+    $("#input_c").bind('blur', updateFormula);
 
     $("#solve_button").bind('click', function(e) {
 	// Prevent default form-submission action and try to solve the equation
