@@ -145,13 +145,13 @@ function MathMLApp(){
 	}
 	$("math .a").each(function() {
 	        $(this).text(aValue);
-	    });
+	});
 	$("math .b").each(function() {
 	        $(this).text(bValue);
-	    });
+	});
 	$("math .c").each(function() {
 	        $(this).text(cValue);
-	    });
+	});
 	$("#error_log").html(errorText);
 	// If error text is now empty, it means valid numbers have been entered for a, b, and c.
 	// Go ahead and solve the quadratic equation
@@ -176,8 +176,6 @@ function MathMLApp(){
 	    $("#equation_solution").text(equationSolution);
 	}
     }
-     
-
 }
 
         
