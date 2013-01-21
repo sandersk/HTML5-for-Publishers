@@ -133,7 +133,7 @@ function canvasApp(){
 	    new_y = -(new_x) * slope
 	    context.lineTo(new_x, new_y)
 	    if (new_x == theCanvas.width + 5) {
-		clearInterval(drawLineIntervalId); // stop animation when line is complete
+		clearInterval(drawLineIntervalId); // end animation when line complete
 		graph_in_progress = "no" // line is now done
 		status_message.innerHTML = "Click a button below the grid to graph an equation"
 	    }
